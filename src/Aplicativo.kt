@@ -3,9 +3,9 @@ fun main() {
     var n2 = 2
     var aux: Int
 
-
+    print("Escolha qual casa de Fibonacci deseja saber o valor (acima da 3ª): ")
     val jorge: Int = readln().toInt()
-
+    println("Casa escolhida: $jorge")
 
     for (i in 4..jorge) {
         aux = n2
@@ -13,5 +13,5 @@ fun main() {
         n1 = aux
     }
 
-    println(n2)
+    println("Valor: $n2")
 }
