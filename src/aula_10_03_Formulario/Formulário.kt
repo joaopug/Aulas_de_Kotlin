@@ -1,31 +1,33 @@
 package aula_10_03_Formulario
 
+//Cria o objeto
 val p: Pessoa = Pessoa()
 
 fun main() {
-    pedirInformacoes()
+    val imc = pedirInformacoes()
+    println("Nome: ${p.nome}\nIdade: ${p.idade} anos\nPeso: ${p.peso} kg\nAltura: ${p.altura} cm")
+    println("Seu IMC: $imc")
+    println("Deseja repetir a pesquisa?\nS - Sim || N - Não")
+    val escolha = readln()
+    if (escolha != "N") {
+        pedirInformacoes()
+    }
 }
 
-fun pedirInformacoes() {
-    var imc: Double
-    var escolha: String
+fun pedirInformacoes(): Double {
 
-    do {
-        println("Me diga seu nome")
-        p.nome = readln()
-        println("Me diga sua idade (anos)")
-        p.idade = readln().toInt()
-        println("Me diga seu peso (kg)")
-        p.peso = readln().toDouble()
-        println("Me diga sua altura (cm)")
-        p.altura = readln().toDouble()
+    println("Me diga seu nome")
+    p.nome = readln()
+    println("Me diga sua idade (anos)")
+    p.idade = readln().toInt()
+    println("Me diga seu peso (kg)")
+    p.peso = readln().toDouble()
+    println("Me diga sua altura (cm)")
+    p.altura = readln().toDouble()
 
-        imc = calcIMC(p.peso, p.altura)
-        println("Nome: ${p.nome}\nIdade: ${p.idade} anos\nPeso: ${p.peso} kg\nAltura: ${p.altura} cm")
-        println("Seu IMC: $imc")
-        println("Deseja repetir a pesquisa?\nS - Sim || N - Não")
-        escolha = readln().toString()
-    } while (escolha != "N")
+    val imc: Double = calcIMC(p.peso, p.altura)
+
+    return imc
 }
 
 fun calcIMC(peso: Double, altura: Double): Double {

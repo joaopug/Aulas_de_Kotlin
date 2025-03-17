@@ -21,6 +21,7 @@
 }*/
 
 fun main(){
+    //Cria uma variável regex para criar um padrão definidor de respostas corretas
     val regex = Regex("^(?:[2-9]|\\d{2,})$")
     var num: String
 
