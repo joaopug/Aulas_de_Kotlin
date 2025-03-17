@@ -4,7 +4,6 @@ val p: Pessoa = Pessoa()
 
 fun main() {
     pedirInformacoes()
-
 }
 
 fun pedirInformacoes() {

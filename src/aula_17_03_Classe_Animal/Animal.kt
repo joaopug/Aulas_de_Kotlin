@@ -8,5 +8,4 @@ class Animal {
     var especie = ""
     var dieta = ""
     var habitat = ""
-
 }
