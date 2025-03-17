@@ -21,7 +21,7 @@ fun pedirInformacoes() {
         println("Me diga sua altura (cm)")
         p.altura = readln().toDouble()
 
-        var imc = String.format("%.2f", calcIMC(p.peso, p.altura))
+        imc = calcIMC(p.peso, p.altura)
         println("Nome: ${p.nome}\nIdade: ${p.idade} anos\nPeso: ${p.peso} kg\nAltura: ${p.altura} cm")
         println("Seu IMC: $imc")
         println("Deseja repetir a pesquisa?\nS - Sim || N - Não")
