@@ -1,4 +1,4 @@
-package aula_17_03_Classe_Animal
+package marco.aula_17_03_Classe_Animal
 
 //Herança: Permite que uma classe herde todos os atrivutos e metodos de uma outra classe
 //Essa nossa classe é uma subclasse

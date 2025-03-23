@@ -1,4 +1,4 @@
-package a1ula_20_02_Jogo_Advinhacao
+package fevereiro.aula_20_02_Jogo_Advinhacao
 
 import kotlin.random.Random
 

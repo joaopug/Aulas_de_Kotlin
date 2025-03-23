@@ -1,4 +1,4 @@
-package aula_17_03_Classe_Animal
+package marco.aula_17_03_Classe_Animal
 
 class Cachorro : Animal() {
     val truques: String = "Senta, rola, late e dá a pata"

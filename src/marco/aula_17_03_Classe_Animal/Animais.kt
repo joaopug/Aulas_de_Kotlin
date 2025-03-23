@@ -1,16 +1,17 @@
-package aula_17_03_Classe_Animal
+package marco.aula_17_03_Classe_Animal
 /*Toda Classe começa letra MAIÚSCULA
 e segue o padrão CamelCase
 Exemplo: MinhaClasse*/
 fun main(){
 
-    val gato: Gato = Gato()
+    val gato = Gato()
     gato.nomeCientifico= "gato"
     gato.habitat = "domestico"
     gato.especie = "felino"
     gato.dieta = "peixe"
 
-    println(gato.nomeCientifico)
+    println(gato.higiene)
+    println(gato.somAnimal())
 
     val cachorro = Cachorro()
     cachorro.nomeCientifico= "cachorro"
@@ -18,6 +19,7 @@ fun main(){
     cachorro.especie = "canino"
     cachorro.dieta = "bacon"
 
+    println(cachorro.truques)
     println(cachorro.somAnimal())
 
     /*
@@ -26,4 +28,5 @@ fun main(){
      */
     val animal = Animal()
     println(animal.somAnimal())
+
 }

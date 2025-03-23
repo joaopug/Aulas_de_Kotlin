@@ -1,4 +1,4 @@
-package aula_17_03_Classe_Animal
+package marco.aula_17_03_Classe_Animal
 
 //Atividade: Crie uma classe animal
 //Atributos: Nome Ciêntifico, Espécie, Dieta, Habitat
