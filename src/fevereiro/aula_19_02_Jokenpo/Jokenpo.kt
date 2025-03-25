@@ -1,5 +1,7 @@
 package fevereiro.aula_19_02_Jokenpo
 
+import kotlin.system.exitProcess
+
 data class Estatisticas(
     var vitoriasSolo: Int = 0,
     var derrotasSolo: Int = 0,
@@ -73,7 +75,7 @@ private fun jogoSolo(estatisticas: Estatisticas) {
 
     } while (verificarRepeticao("\nQuer jogar de novo? (S - Sim || N - Não)"))
 
-    if (verificarRepeticao("Quer voltar ao menu? (S - Sim || N - Não)")) menu(estatisticas)
+    if (!verificarRepeticao("\nQuer voltar ao menu? (S - Menu || N - Sair do jogo)", permitirSaida = true)) return
 }
 
 private fun jogoEmDupla(estatisticas: Estatisticas) {
@@ -97,15 +99,21 @@ private fun jogoEmDupla(estatisticas: Estatisticas) {
 
     } while (verificarRepeticao("\nQuer jogar de novo? (S - Sim || N - Não)"))
 
-    if (verificarRepeticao("Quer voltar ao menu? (S - Sim || N - Não)")) menu(estatisticas)
+    if (!verificarRepeticao("\nQuer voltar ao menu? (S - Menu || N - Sair do jogo)", permitirSaida = true)) return
 }
 
-private fun verificarRepeticao(mensagem: String): Boolean {
+private fun verificarRepeticao(mensagem: String, permitirSaida: Boolean = false): Boolean {
     println(mensagem)
     while (true) {
         when (readln().trim().uppercase()) {
             "S" -> return true
-            "N" -> return false
+            "N" -> {
+                if (permitirSaida) {
+                    println("\nFaloooooouu...")
+                    exitProcess(0)
+                }
+                return false
+            }
             else -> println("Caractere inválido.")
         }
     }
@@ -166,5 +174,6 @@ private fun verEstatisticas(estatisticas: Estatisticas) {
                 "\nVitórias do Jogador 2: ${estatisticas.vitoriasJ2}" +
                 "\nEmpates: ${estatisticas.empatesMultijogador}"
     )
-    if (verificarRepeticao("\nQuer voltar ao menu? (S - Sim || N - Não)")) menu(estatisticas)
+
+    if (!verificarRepeticao("\nQuer voltar ao menu? (S - Menu || N - Sair do jogo)", permitirSaida = true)) return
 }
