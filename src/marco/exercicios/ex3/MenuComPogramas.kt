@@ -1,6 +1,13 @@
 package marco.exercicios.ex3
 
+import kotlin.random.Random
+
+var i = 1
 val expressaoRegularMenu = Regex("[0-3]")
+val decisaoRegex = Regex("^[SN]$")
+val Regexnumeros = Regex("-?\\d+")
+var listaDeNumeros = mutableListOf<Int>()
+
 
 fun main() {
     menu()
@@ -9,7 +16,7 @@ fun main() {
 fun menu() {
     do {
         println(
-            "\nMega App de Programas Paia" +
+            "\n\n\nMega App de Programas Paia" +
                     "\n\n---Menu---" +
                     "\n1 - Somador de números reais" +
                     "\n2 - Gerador de número aleatório" +
@@ -58,6 +65,59 @@ private fun somador() {
 }
 
 private fun gerador() {
-    println("Qual é intervalo do número aleatória")
+    println(
+        "Bem vindo ao gerador de números." +
+                "\n\nPrimeiro você deve escolher o número inicial" +
+                "\ne depois o número final." +
+                "\n\nApós, isso um número aleatório entre esses dois números será gerado."
+    )
+
+    println("\nNúmero inicial:")
+    val n1 = readln().toInt()
+    println("\nNúmero final:")
+    val n2 = readln().toInt()
+
+    val numeroSorteado = Random.nextInt(n1, n2)
+
+    println("\nO número aleatório gerado entre $n1 e $n2 foi $numeroSorteado")
 }
-private fun armazenador() {}
+
+private fun armazenador() {
+    println(
+        "Armazene quantos números quiser," +
+                "\no programa irá ordená-los em ordem crescente."
+    )
+
+    do {
+        println("\nQual é o ${i}º número que deseja armazenar?")
+        do {
+            val numArmazenado = readln()
+            if (Regexnumeros.matches(numArmazenado)){
+                listaDeNumeros.add(numArmazenado.toInt())
+                i++
+            } else {
+                println("Caractere inválido.")
+            }
+        } while (!Regexnumeros.matches(numArmazenado))
+
+        var decisao: String
+
+        println(
+            "\n\nDeseja adicionar mais algum?" +
+                    "\nS - sim || N - não"
+        )
+
+        do {
+            decisao = readln().uppercase()
+            if (!decisaoRegex.matches(decisao)) {
+                println("Caractere Inválido.")
+            }
+        } while (!decisaoRegex.matches(decisao))
+
+    } while (decisao != "N")
+
+    listaDeNumeros.sort()
+    println("Aqui está a lista ordenada:")
+    println(listaDeNumeros.joinToString())
+    i = 0
+}
