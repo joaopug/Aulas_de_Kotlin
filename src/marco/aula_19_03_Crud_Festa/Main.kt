@@ -101,7 +101,7 @@ private fun listar(): String {
             ) //Fim do PRINT
         } //Fim do ForEach
     }//Fim do if
-    return "\n Listagen feita com sucesso."
+    return "\n Listagem feita com sucesso."
 }
 
 //QUESTÃO 2 - Validar para a variável só aceitar números
