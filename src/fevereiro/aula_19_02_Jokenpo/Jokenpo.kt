@@ -2,6 +2,8 @@ package fevereiro.aula_19_02_Jokenpo
 
 import kotlin.system.exitProcess
 
+val decisaoRegex = Regex("^[SN]$")
+
 data class Estatisticas(
     var vitoriasSolo: Int = 0,
     var derrotasSolo: Int = 0,
