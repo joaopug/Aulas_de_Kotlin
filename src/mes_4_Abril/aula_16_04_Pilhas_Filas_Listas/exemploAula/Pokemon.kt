@@ -45,5 +45,85 @@ fun main() {
         "INSETO" to listOf("PLANTA", "SOMBRIO", "PSIQUICO")
     )
 
+    val metapod = mapOf(
+        "INSETO" to listOf("PLANTA", "SOMBRIO", "PSIQUICO")
+    )
 
+    val butterfree = mapOf(
+        "INSETO" to listOf("PLANTA", "SOMBRIO", "PSIQUICO"),
+        "VOADOR" to listOf("PLANTA", "INSETO", "LUTADOR")
+    )
+
+    val weedle = mapOf(
+        "INSETO" to listOf("PLANTA", "SOMBRIO", "PSIQUICO"),
+    )
+
+    val kakuna = mapOf(
+        "INSETO" to listOf("PLANTA", "SOMBRIO", "PSIQUICO"),
+        "VENENO" to  listOf("FADA, PLANTA")
+    )
+
+    val beedrill = mapOf(
+        "INSETO" to listOf("PLANTA", "SOMBRIO", "PSIQUICO"),
+        "VENENO" to  listOf("FADA, PLANTA")
+    )
+
+    val pidgey = mapOf(
+        "NORMAL" to listOf("NENHUMA"),
+        "VOADOR" to listOf("PLANTA", "INSETO", "LUTADOR")
+    )
+
+    val pidgeotto = mapOf(
+        "NORMAL" to listOf("NENHUMA"),
+        "VOADOR" to listOf("PLANTA", "INSETO", "LUTADOR")
+    )
+
+    val pidgeot = mapOf(
+        "NORMAL" to listOf("NENHUMA"),
+        "VOADOR" to listOf("PLANTA", "INSETO", "LUTADOR")
+    )
+
+    val rattata = mapOf(
+        "NORMAL" to listOf("NENHUMA"),
+    )
+
+    val raticate = mapOf(
+        "NORMAL" to listOf("NENHUMA"),
+    )
+
+    val spearow = mapOf(
+        "NORMAL" to listOf("NENHUMA"),
+        "VOADOR" to listOf("PLANTA", "INSETO", "LUTADOR")
+    )
+
+    val fearow = mapOf(
+        "NORMAL" to listOf("NENHUMA"),
+        "VOADOR" to listOf("PLANTA", "INSETO", "LUTADOR")
+    )
+
+    val ekans = mapOf(
+        "VENENO" to  listOf("FADA, PLANTA")
+    )
+
+    val arbok = mapOf(
+        "VENENO" to  listOf("FADA, PLANTA")
+    )
+
+    val pikachu = mapOf(
+        "ELÉTRICO" to listOf("ÁGUA", "VOADOR"),
+    )
+
+    val raichu = mapOf(
+        "ELÉTRICO" to listOf("ÁGUA", "VOADOR"),
+    )
+
+    val sandshrew = mapOf(
+        "TERRA" to listOf("ELÉTRICO", "VENENO", "PEDRA", "AÇO", "FOGO")
+    )
+
+    val sandslash = mapOf(
+        "TERRA" to listOf("ELÉTRICO", "VENENO", "PEDRA", "AÇO", "FOGO")
+    )
+
+    
 }
