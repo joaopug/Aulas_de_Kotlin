@@ -24,7 +24,7 @@ fun main() {
         val carneMoida = (Produto("Carne moída", 8000, 10))
         pilha.push(carneMoida)
         println("O item ${carneMoida.nome} foi adicionado na pilha\n")
-        Thread.sleep(1000)
+        Thread.sleep(4000)
 
         while (pilha.isNotEmpty()) {
             tirarDaPrateleira()
@@ -52,10 +52,13 @@ fun tirarDaPrateleira() {
     println(
         "O produto ${produto.nome} está esgotado\n"
     )
-    if(pilha.isEmpty()) {
-        "\nNão há mais itens na pilha." +
-                "\nHora de adicionar mais heheheh\n"
+    if (pilha.isNotEmpty()) {
+        println("Itens ainda restantes na pilha: ${pilha.size}\n")
+
     } else {
-        "\nItens ainda restantes na pilha: ${pilha.size}\n"
+        println(
+            "\nNão há mais itens na pilha." +
+                    "\nHora de adicionar mais heheheh\n"
+        )
     }
 }
