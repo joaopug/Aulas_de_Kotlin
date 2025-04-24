@@ -670,4 +670,35 @@ fun main() {
     val mew = mapOf(
         "PSÍQUICO" to listOf("VENENO", "LUTADOR")
     )
+
+    println(bulbasauro["GRAMA"])
+    if (bulbasauro.containsKey("GRAMA")) {
+        println("Ele é do tipo GRAMA")
+    } else {
+        println("Ele não é do tipo GRAMA")
+    }
+
+    if (charmander["FOGO"]?.contains("PLANTA")!!) {
+        println("Ele é forte contra PLANTA")
+    } else {
+        println("Ele não é forte contra PLANTA")
+    }
+
+    for((chave, valor) in mew){
+        println("A chave é $chave e o valor é $valor")
+    }
+
+    if("FOGO" in charmander){
+        println("É do tipo FOGO")
+    }
+
+    //EXEMPLOS
+    val carro = mapOf(
+        "PNEU" to 32,
+        "VOLANTE" to true,
+        "MOTOR" to 2.4,
+        "PLACA" to "FDHSJA",
+    )
+
+    for((caracteristica, descricao) in carro){}
 }
