@@ -2,13 +2,27 @@ package mes_4_Abril.aula_16_04_Pilhas_Filas_Listas.exemploAula
 
 fun main() {
     val bulbasauro = mapOf(
+        "NOME" to listOf("Bulbasaur"),
         "GRAMA" to listOf("ÁGUA", "TERRA", "PEDRA"),
-        "VENENO" to listOf("FADA, PLANTA")
+        "DESVANTAGENS" to listOf("VOADOR", "VENENO", "INSETO", "FOGO", "GELO"),
+        "VENENO" to listOf("FADA, PLANTA"),
+        "VIDA" to listOf(10),
+        "ATAQUES" to mapOf(
+            1 to listOf("Chicote de vinha", 8, "GRAMA"),
+            2 to listOf("Tocar grama", 5, "GRAMA")
+        )
     )
 
     val ivisaurro = mapOf(
+        "NOME" to listOf("Ivysaur"),
         "GRAMA" to listOf("ÁGUA", "TERRA", "PEDRA"),
-        "VENENO" to listOf("FADA, PLANTA")
+        "DESVANTAGENS" to listOf("VOADOR", "VENENO", "INSETO", "FOGO", "GELO"),
+        "VENENO" to listOf("FADA, PLANTA"),
+        "VIDA" to listOf(20),
+        "ATAQUES" to mapOf(
+            1 to listOf("Chicote de vinha", 8, "GRAMA"),
+            2 to listOf("Tocar grama", 5, "GRAMA")
+        )
     )
 
     val venusauro = mapOf(
@@ -670,4 +684,116 @@ fun main() {
     val mew = mapOf(
         "PSÍQUICO" to listOf("VENENO", "LUTADOR")
     )
+
+
+    //Boa parte das variavéis não tem uso no momento
+
+    println("Como você quer ser chamado?")
+    val apelido = readln()
+
+    Thread.sleep(2000)
+
+    println("$apelido é? Que interessante.")
+
+    Thread.sleep(2000)
+
+    println(
+        "\nQuantos Pokémon batalharão?" +
+                "\nEscolha:" +
+                "\n1 - Apenas um Pokémon"
+    )
+    //"2 - Dois" +
+    //"3 - Três")
+    val qtdePokemonLuta = readln().toInt()
+
+    Thread.sleep(2000)
+
+    println("\nUm Pokémon será então.")
+
+    Thread.sleep(2000)
+
+    println(
+        "\nQuais dos 151 Pokémon vai querer usar, $apelido?" +
+                "\nSelecione:" +
+                "\n1 - ${bulbasauro["NOME"]}"
+    )
+    val pkmnescolhido = readln().toInt()
+
+    Thread.sleep(2000)
+
+    println("\nBulbasauro escolhido.")
+
+    val time_Player1 = mapOf(
+        1 to bulbasauro
+    )
+
+    val time_Computador = mapOf(
+        1 to ivisaurro
+    )
+
+    println(
+        "\nTime de $apelido:" +
+                "\n1 - ${time_Player1[1]?.get("NOME")}\n"
+    )
+
+    Thread.sleep(2000)
+
+    println(
+        "Time adversário:" +
+                "\n1 - ${time_Computador[1]?.get("NOME")}"
+    )
+
+    Thread.sleep(5000)
+
+    //O print dos "ATAQUES" será necessário reformulação para ficar mais bonito
+    print(
+        "Que a batalha comece!!!" +
+                "\n\n$apelido começa atacando primeiro!" +
+                "\n\nQual ataque o seu ${time_Player1[1]?.get("NOME")} usará?" +
+                "\n${time_Player1[1]?.get("ATAQUES")}" +
+                "\nEscolha:" +
+                "\n1 || 2"
+    )
+
+    val escolhaAtq = readln().toInt()
+
+    //Aberração que o nome das variaveis explica o que faz, tem que transformar isso numa função depois
+    //
+    //Pedi pro gepeto como conseguia um valor dentro de uma lista que tá dentro de um map que esse mesmo
+    //map tá dentro de outro
+    //Saiu isso aí
+    //
+    //Explicação do que acontece:
+    //   Map do primeiro Poke do player ->
+    //-> Chave "ATAQUES" (um map novo que criei) ->
+    //-> Chave ataque escolhido (1 ou 2 por enquanto) ->
+    //-> Valor "dano"
+    //
+    //Essa explicação é só lógica, se quer saber que cada coisa faz, melhor pedir pro Home
+    var acessarMapaDosAtaques = (time_Player1[1] as? Map<String, Any>)?.get("ATAQUES") as? Map<Int, Any>
+    var pegarAtaqueEscolhido = acessarMapaDosAtaques?.get(escolhaAtq) as? List<*>
+    var pegarValorDoDano = pegarAtaqueEscolhido?.get(1) as Int?
+
+    //Aproveita a aberração de antes e pega o tipo do ataque também
+    //-> Valor "tipo"
+    var pegarTipoDoAtaque = pegarAtaqueEscolhido?.get(2) as String
+
+    //Println pra saber se deu bom
+    println("Dano do ataque: $pegarValorDoDano")
+    println("Tipo do ataque: $pegarTipoDoAtaque")
+
+    //Uma aberração baseada na primeira
+    //Tem como objetivo determinar se o tipo do ataque está nas fraquezas do Pokémon
+    //Tudo por causa da nova chave que eu criei: "DESVANTAGENS"
+    //Não funciona (por emquanto)
+
+    /*var acessarFraquezasAdversario = ((time_Computador[1] as? Map<String, Any>)
+        ?.get("DESVANTAGENS") as? Map<*, *>)
+        ?.get(1) as? List<*>
+        ?.contains(pegarTipoDoAtaque) == true
+
+    if (acessarFraquezasAdversario) {
+
+    }*/
+
 }
