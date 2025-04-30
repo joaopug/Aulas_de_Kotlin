@@ -15,7 +15,7 @@ fun main() {
         )
     )
 
-    val ivisaurro = mapOf(
+    val ivisauro = mapOf(
         "NOME" to listOf("Ivysaur"),
         "GRAMA" to listOf("ÁGUA", "TERRA", "PEDRA"),
         "DESVANTAGENS" to listOf("VOADOR", "VENENO", "INSETO", "FOGO", "GELO"),
@@ -687,7 +687,6 @@ fun main() {
         "PSÍQUICO" to listOf("VENENO", "LUTADOR")
     )
 
-
     //Boa parte das variavéis não tem uso no momento
 
     println("Como você quer ser chamado?")
@@ -730,7 +729,7 @@ fun main() {
     )
 
     val time_Computador = mapOf(
-        1 to ivisaurro
+        1 to ivisauro
     )
 
     println(
