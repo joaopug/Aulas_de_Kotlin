@@ -15,8 +15,8 @@ fun main() {
         )
     )
 
-    val ivisauro = mapOf(
-        "NOME" to listOf("Ivysaur"),
+    val ivysaur = mapOf(
+        "NOME" to "Ivysaur",
         "GRAMA" to listOf("ÁGUA", "TERRA", "PEDRA"),
         "DESVANTAGENS" to listOf("VOADOR", "VENENO", "INSETO", "FOGO", "GELO"),
         "VENENO" to listOf("FADA, PLANTA"),
@@ -29,7 +29,7 @@ fun main() {
         )
     )
 
-    val venusauro = mapOf(
+    val venusaur = mapOf(
         "GRAMA" to listOf("ÁGUA", "TERRA", "PEDRA"),
         "VENENO" to listOf("FADA, PLANTA")
     )
@@ -635,6 +635,7 @@ fun main() {
     )
 
     val kabuto = mapOf(
+        "NOME" to "Kabuto",
         "PEDRA" to listOf("FOGO", "GELO", "VOADOR", "INSETO"),
         "ÁGUA" to listOf("FOGO", "TERRA", "PEDRA")
     )
@@ -721,8 +722,15 @@ fun main() {
 
     //Thread.sleep(2000)
 
+    mapaPokemons.forEach { chave, valor ->
+        val nome = valor["NOME"]
+        println(nome)
+    }
+
+
     println(
         "\nQuais dos 151 Pokémon vai querer usar, $apelido?" +
+                "${)}"+
                 "\nSelecione:" +
                 "\n1 - ${["NOME"]}"
     )
@@ -734,8 +742,9 @@ fun main() {
 
     println("\nBulbasauro escolhido.")
 
-    val time_Player1 = mapOf(
-        1 to bulbasauro
+    /*val time_Player1 = mapOf(
+        1 to bulbasauro,
+        2 to ivisauro
     )
 
     val time_Computador = mapOf(
