@@ -1,9 +1,8 @@
-package mes_4_Abril.aula_16_04_Pilhas_Filas_Listas.exemploAula
-
+package mes_4_Abril.aula_16_04_Pilhas_Filas_Listas.Trabalho
 
 fun main() {
-    val bulbasauro = mapOf(
-        "NOME" to listOf("Bulbasaur"),
+    val bulbasaur = mapOf(
+        "NOME" to "Bulbasaur",
         "GRAMA" to listOf("ÁGUA", "TERRA", "PEDRA"),
         "DESVANTAGENS" to listOf("VOADOR", "VENENO", "INSETO", "FOGO", "GELO"),
         "VENENO" to listOf("FADA, PLANTA"),
@@ -11,7 +10,8 @@ fun main() {
         "ATAQUES" to mapOf(
             1 to listOf("Chicote de vinha", 8.0, "GRAMA"),
             2 to listOf("Tocar grama", 5.0, "GRAMA"),
-            3 to listOf("Lança-chamas", 20.0, "FOGO")
+            3 to listOf("Lança-chamas", 20.0, "FOGO"),
+            4 to listOf("Bomba de semente", 10.0, "GRAMA"),
         )
     )
 
@@ -23,7 +23,9 @@ fun main() {
         "VIDA" to 100.0,
         "ATAQUES" to mapOf(
             1 to listOf("Chicote de vinha", 8.0, "GRAMA"),
-            2 to listOf("Tocar grama", 5.0, "GRAMA")
+            2 to listOf("Tocar grama", 5.0, "GRAMA"),
+            3 to listOf("Lança-chamas", 20.0, "FOGO"),
+            4 to listOf("Bomba de semente", 10.0, "GRAMA"),
         )
     )
 
@@ -49,7 +51,7 @@ fun main() {
         "ÁGUA" to listOf("FOGO", "TERRA", "PEDRA")
     )
 
-    val warturtle = mapOf(
+    val wartortle = mapOf(
         "ÁGUA" to listOf("FOGO", "TERRA", "PEDRA")
     )
 
@@ -687,6 +689,7 @@ fun main() {
         "PSÍQUICO" to listOf("VENENO", "LUTADOR")
     )
 
+
     //Boa parte das variavéis não tem uso no momento
 
     println("Como você quer ser chamado?")
@@ -701,23 +704,30 @@ fun main() {
     println(
         "\nQuantos Pokémon batalharão?" +
                 "\nEscolha:" +
-                "\n1 - Apenas um Pokémon"
+                "\n1 - Um" +
+                "\n2 - Dois" +
+                "\n3 - Três"
     )
-    //"2 - Dois" +
-    //"3 - Três")
     val qtdePokemonLuta = readln().toInt()
 
     //Thread.sleep(2000)
 
-    println("\nUm Pokémon será então.")
+    when (qtdePokemonLuta) {
+        1 -> println("\nUm Pokémon será então.")
+        2 -> println("\nDois Pokémon será então.")
+        3 -> println("\nTrês Pokémon será então.")
+    }
+
 
     //Thread.sleep(2000)
 
     println(
         "\nQuais dos 151 Pokémon vai querer usar, $apelido?" +
                 "\nSelecione:" +
-                "\n1 - ${bulbasauro["NOME"]}"
+                "\n1 - ${["NOME"]}"
     )
+
+
     val pkmnescolhido = readln().toInt()
 
     //Thread.sleep(2000)
@@ -753,16 +763,12 @@ fun main() {
                 "\n\nQual ataque o seu ${time_Player1[1]?.get("NOME")} usará?" +
                 "\n${time_Player1[1]?.get("ATAQUES")}" +
                 "\nEscolha:" +
-                "\n1 || 2"
+                "\n1 || 2 || 3 || 4"
     )
 
     val escolhaAtq = readln().toInt()
 
-    //Aberração que o nome das variaveis explica o que faz, tem que transformar isso numa função depois
-    //
-    //Pedi pro gepeto como conseguia um valor dentro de uma lista que tá dentro de um map que esse mesmo
-    //map tá dentro de outro
-    //Saiu isso aí
+    //Aberração
     //
     //Explicação do que acontece:
     //   Map do primeiro Poke do player ->
@@ -772,62 +778,32 @@ fun main() {
     //
     //Essa explicação é só lógica, se quer saber que cada coisa faz, melhor pedir pro Home
 
-    val socorro = pegarValorDoDano(time_Player1[1],"ATAQUES",escolhaAtq,1)
-    println(socorro)
-
-    var acessarMapaDosAtaques = (time_Player1[1] as? Map<String, Any>)?.get("ATAQUES") as? Map<Int, Any>
-    var pegarAtaqueEscolhido = acessarMapaDosAtaques?.get(escolhaAtq) as? List<*>
-    var pegarValorDoDano = pegarAtaqueEscolhido?.get(1) as Double
+    var atqPlyr = gerarDanoAtaque(time_Player1[1], "ATAQUES", escolhaAtq, 1)
+    println(atqPlyr)
 
     //Aproveita a aberração de antes e pega o tipo do ataque também
     //-> Valor "tipo"
-    var pegarTipoDoAtaque = pegarAtaqueEscolhido.get(2) as String
-
-    //Println pra saber se deu bom
-    //println("Dano do ataque: $pegarValorDoDano")
-    //println("Tipo do ataque: $pegarTipoDoAtaque")
+    var tipoDoAtaque = pegarTipoDoAtaque(time_Player1[1], "ATAQUES", escolhaAtq, 2)
 
     //Uma aberração baseada na primeira
     //Tem como objetivo determinar se o tipo do ataque está nas fraquezas do Pokémon
     //Tudo por causa da nova chave que eu criei: "DESVANTAGENS"
     //Não funciona (por enquanto)
 
-    val acessarFraquezasAdversario = ((time_Computador[1])
-        ?.get("DESVANTAGENS") as? List<*>)
-        ?.contains(pegarTipoDoAtaque) == true
-
     var vidaPkmnCpu: Double = time_Computador[1]?.get("VIDA") as Double
 
-    var danoFinal : Double = 0.0
+    var cpuTemFraqueza = compararTipoDoAtq(time_Computador[1], "DESVANTAGENS", tipoDoAtaque)
 
-    if (acessarFraquezasAdversario) {
-        danoFinal = pegarValorDoDano * 2
-        println(
-            "\nO ataque foi super efetivo!" +
-                    "\n${time_Computador[1]?.get("NOME")} levou $danoFinal de dano!"
-        )
-        vidaPkmnCpu = vidaPkmnCpu - danoFinal
-        danoFinal = 0.0
-        println("\nVida restante do ${time_Computador[1]?.get("NOME")}: $vidaPkmnCpu")
-    } else {
-        println("\n${time_Computador[1]?.get("NOME")} levou $pegarValorDoDano de dano.")
-        vidaPkmnCpu = vidaPkmnCpu - pegarValorDoDano
-        println("\nVida restante do ${time_Computador[1]?.get("NOME")}: $vidaPkmnCpu")
-    }
+    calculoDano(cpuTemFraqueza, time_Computador, atqPlyr, vidaPkmnCpu)
 
-    val randomizador = 1..4
-    val atqCpu = time_Computador[1]?.get("ATAQUES")
+    var randomizador = (1..4).random()
+    var atqCpu = gerarDanoAtaque(time_Computador[1], "ATAQUES", randomizador, 1)
+    var tipoAtqCpu = pegarTipoDoAtaque(time_Computador[1],"ATAQUES",randomizador, 2)
+    var vidaPkmnPlyr: Double = time_Player[1]?.get("VIDA") as Double
+    var plyrTemFraqueza = compararTipoDoAtq(time_Player1[1], "DESVANTAGENS", tipoAtqCpu)
 
-}
+    calculoDano(plyrTemFraqueza, time_Computador, atqCpu, vidaPkmnPlyr)
 
-fun pegarValorDoDano(pokemon: Map<String, Any>?, chave: String, ataque: Int, valorAtq: Int){
+*/
 
-    val ataques = pokemon?.get(chave) as? Map<Int, List<Any>>
-
-    val ataqueSelecionado = ataques?.get(ataque) as? List<*>
-
-}
-
-
-fun  acessarFraquezasAdversario(){
 }
