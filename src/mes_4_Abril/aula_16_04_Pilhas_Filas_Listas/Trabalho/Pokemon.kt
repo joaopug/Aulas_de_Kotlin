@@ -1,761 +1,206 @@
 package mes_4_Abril.aula_16_04_Pilhas_Filas_Listas.Trabalho
 
+val regexPokemonBatalha = Regex("[1-3]")
+
+val regexEscolhaPokemon = Regex("^(?:[1-9]|[1-9][0-9]|1[0-4][0-9]|150|151)\$")
+
 fun main() {
-    val bulbasaur = mapOf(
-        "NOME" to "Bulbasaur",
-        "GRAMA" to listOf("ÁGUA", "TERRA", "PEDRA"),
-        "DESVANTAGENS" to listOf("VOADOR", "VENENO", "INSETO", "FOGO", "GELO"),
-        "VENENO" to listOf("FADA, PLANTA"),
-        "VIDA" to 10.0,
-        "ATAQUES" to mapOf(
-            1 to listOf("Chicote de vinha", 8.0, "GRAMA"),
-            2 to listOf("Tocar grama", 5.0, "GRAMA"),
-            3 to listOf("Lança-chamas", 20.0, "FOGO"),
-            4 to listOf("Bomba de semente", 10.0, "GRAMA"),
-        )
-    )
-
-    val ivysaur = mapOf(
-        "NOME" to "Ivysaur",
-        "GRAMA" to listOf("ÁGUA", "TERRA", "PEDRA"),
-        "DESVANTAGENS" to listOf("VOADOR", "VENENO", "INSETO", "FOGO", "GELO"),
-        "VENENO" to listOf("FADA, PLANTA"),
-        "VIDA" to 100.0,
-        "ATAQUES" to mapOf(
-            1 to listOf("Chicote de vinha", 8.0, "GRAMA"),
-            2 to listOf("Tocar grama", 5.0, "GRAMA"),
-            3 to listOf("Lança-chamas", 20.0, "FOGO"),
-            4 to listOf("Bomba de semente", 10.0, "GRAMA"),
-        )
-    )
-
-    val venusaur = mapOf(
-        "GRAMA" to listOf("ÁGUA", "TERRA", "PEDRA"),
-        "VENENO" to listOf("FADA, PLANTA")
-    )
-
-    val charmander = mapOf(
-        "FOGO" to listOf("PLANTA", "AÇO", "GELO", "INSETO")
-    )
-
-    val charmeleon = mapOf(
-        "FOGO" to listOf("PLANTA", "AÇO", "GELO", "INSETO")
-    )
-
-    val charizard = mapOf(
-        "FOGO" to listOf("PLANTA", "AÇO", "GELO", "INSETO"),
-        "VOADOR" to listOf("PLANTA", "INSETO", "LUTADOR")
-    )
-
-    val squirtle = mapOf(
-        "ÁGUA" to listOf("FOGO", "TERRA", "PEDRA")
-    )
-
-    val wartortle = mapOf(
-        "ÁGUA" to listOf("FOGO", "TERRA", "PEDRA")
-    )
-
-    val blastoise = mapOf(
-        "ÁGUA" to listOf("FOGO", "TERRA", "PEDRA")
-    )
-
-    val caterpie = mapOf(
-        "INSETO" to listOf("PLANTA", "SOMBRIO", "PSIQUICO")
-    )
-
-    val metapod = mapOf(
-        "INSETO" to listOf("PLANTA", "SOMBRIO", "PSIQUICO")
-    )
-
-    val butterfree = mapOf(
-        "INSETO" to listOf("PLANTA", "SOMBRIO", "PSIQUICO"),
-        "VOADOR" to listOf("PLANTA", "INSETO", "LUTADOR")
-    )
-
-    val weedle = mapOf(
-        "INSETO" to listOf("PLANTA", "SOMBRIO", "PSIQUICO"),
-    )
-
-    val kakuna = mapOf(
-        "INSETO" to listOf("PLANTA", "SOMBRIO", "PSIQUICO"),
-        "VENENO" to listOf("FADA, PLANTA")
-    )
-
-    val beedrill = mapOf(
-        "INSETO" to listOf("PLANTA", "SOMBRIO", "PSIQUICO"),
-        "VENENO" to listOf("FADA, PLANTA")
-    )
-
-    val pidgey = mapOf(
-        "NORMAL" to listOf("NENHUMA"),
-        "VOADOR" to listOf("PLANTA", "INSETO", "LUTADOR")
-    )
-
-    val pidgeotto = mapOf(
-        "NORMAL" to listOf("NENHUMA"),
-        "VOADOR" to listOf("PLANTA", "INSETO", "LUTADOR")
-    )
-
-    val pidgeot = mapOf(
-        "NORMAL" to listOf("NENHUMA"),
-        "VOADOR" to listOf("PLANTA", "INSETO", "LUTADOR")
-    )
-
-    val rattata = mapOf(
-        "NORMAL" to listOf("NENHUMA"),
-    )
-
-    val raticate = mapOf(
-        "NORMAL" to listOf("NENHUMA"),
-    )
-
-    val spearow = mapOf(
-        "NORMAL" to listOf("NENHUMA"),
-        "VOADOR" to listOf("PLANTA", "INSETO", "LUTADOR")
-    )
-
-    val fearow = mapOf(
-        "NORMAL" to listOf("NENHUMA"),
-        "VOADOR" to listOf("PLANTA", "INSETO", "LUTADOR")
-    )
-
-    val ekans = mapOf(
-        "VENENO" to listOf("FADA, PLANTA")
-    )
-
-    val arbok = mapOf(
-        "VENENO" to listOf("FADA, PLANTA")
-    )
-
-    val pikachu = mapOf(
-        "ELÉTRICO" to listOf("ÁGUA", "VOADOR"),
-    )
-
-    val raichu = mapOf(
-        "ELÉTRICO" to listOf("ÁGUA", "VOADOR"),
-    )
-
-    val sandshrew = mapOf(
-        "TERRA" to listOf("ELÉTRICO", "VENENO", "PEDRA", "AÇO", "FOGO")
-    )
-
-    val sandslash = mapOf(
-        "TERRA" to listOf("ELÉTRICO", "VENENO", "PEDRA", "AÇO", "FOGO")
-    )
-
-    val nidoran_f = mapOf(
-        "VENENO" to listOf("FADA", "PLANTA")
-    )
-
-    val nidorina = mapOf(
-        "VENENO" to listOf("FADA", "PLANTA")
-    )
-
-    val nidoqueen = mapOf(
-        "VENENO" to listOf("FADA", "PLANTA"),
-        "TERRA" to listOf("ELÉTRICO", "VENENO", "PEDRA", "AÇO", "FOGO")
-    )
-
-    val nidoran_m = mapOf(
-        "VENENO" to listOf("FADA", "PLANTA")
-    )
-
-    val nidorino = mapOf(
-        "VENENO" to listOf("FADA", "PLANTA")
-    )
-
-    val nidoking = mapOf(
-        "VENENO" to listOf("FADA", "PLANTA"),
-        "TERRA" to listOf("ELÉTRICO", "VENENO", "PEDRA", "AÇO", "FOGO")
-    )
-
-    val clefairy = mapOf(
-        "FADA" to listOf("LUTADOR", "DRAGÃO", "SOMBRIO")
-    )
-
-    val clefable = mapOf(
-        "FADA" to listOf("LUTADOR", "DRAGÃO", "SOMBRIO")
-    )
-
-    val vulpix = mapOf(
-        "FOGO" to listOf("PLANTA", "AÇO", "GELO", "INSETO")
-    )
-
-    val ninetales = mapOf(
-        "FOGO" to listOf("PLANTA", "AÇO", "GELO", "INSETO")
-    )
-
-    val jigglypuff = mapOf(
-        "NORMAL" to listOf("NENHUMA"),
-        "FADA" to listOf("LUTADOR", "DRAGÃO", "SOMBRIO")
-    )
-
-    val wigglytuff = mapOf(
-        "NORMAL" to listOf("NENHUMA"),
-        "FADA" to listOf("LUTADOR", "DRAGÃO", "SOMBRIO")
-    )
-
-    val zubat = mapOf(
-        "VENENO" to listOf("FADA", "PLANTA"),
-        "VOADOR" to listOf("PLANTA", "INSETO", "LUTADOR")
-    )
-
-    val golbat = mapOf(
-        "VENENO" to listOf("FADA", "PLANTA"),
-        "VOADOR" to listOf("PLANTA", "INSETO", "LUTADOR")
-    )
-
-    val oddish = mapOf(
-        "GRAMA" to listOf("ÁGUA", "TERRA", "PEDRA"),
-        "VENENO" to listOf("FADA", "PLANTA")
-    )
-
-    val gloom = mapOf(
-        "GRAMA" to listOf("ÁGUA", "TERRA", "PEDRA"),
-        "VENENO" to listOf("FADA", "PLANTA")
-    )
-
-    val vileplume = mapOf(
-        "GRAMA" to listOf("ÁGUA", "TERRA", "PEDRA"),
-        "VENENO" to listOf("FADA", "PLANTA")
-    )
-
-    val paras = mapOf(
-        "INSETO" to listOf("PLANTA", "PSÍQUICO", "SOMBRIO"),
-        "GRAMA" to listOf("ÁGUA", "TERRA", "PEDRA")
-    )
-
-    val parasect = mapOf(
-        "INSETO" to listOf("PLANTA", "PSÍQUICO", "SOMBRIO"),
-        "GRAMA" to listOf("ÁGUA", "TERRA", "PEDRA")
-    )
-
-    val venonat = mapOf(
-        "INSETO" to listOf("PLANTA", "PSÍQUICO", "SOMBRIO"),
-        "VENENO" to listOf("FADA", "PLANTA")
-    )
-
-    val venomoth = mapOf(
-        "INSETO" to listOf("PLANTA", "PSÍQUICO", "SOMBRIO"),
-        "VENENO" to listOf("FADA", "PLANTA")
-    )
-
-    val diglett = mapOf(
-        "TERRA" to listOf("ELÉTRICO", "VENENO", "PEDRA", "AÇO", "FOGO")
-    )
-
-    val dugtrio = mapOf(
-        "TERRA" to listOf("ELÉTRICO", "VENENO", "PEDRA", "AÇO", "FOGO")
-    )
-
-    val meowth = mapOf(
-        "NORMAL" to listOf("NENHUMA")
-    )
-
-    val persian = mapOf(
-        "NORMAL" to listOf("NENHUMA")
-    )
-
-    val psyduck = mapOf(
-        "ÁGUA" to listOf("FOGO", "TERRA", "PEDRA")
-    )
-
-    val golduck = mapOf(
-        "ÁGUA" to listOf("FOGO", "TERRA", "PEDRA")
-    )
-
-    val mankey = mapOf(
-        "LUTADOR" to listOf("NORMAL", "PEDRA", "GELO", "AÇO", "SOMBRIO")
-    )
-
-    val primeape = mapOf(
-        "LUTADOR" to listOf("NORMAL", "PEDRA", "GELO", "AÇO", "SOMBRIO")
-    )
-
-    val growlithe = mapOf(
-        "FOGO" to listOf("PLANTA", "AÇO", "GELO", "INSETO")
-    )
-
-    val arcanine = mapOf(
-        "FOGO" to listOf("PLANTA", "AÇO", "GELO", "INSETO")
-    )
-
-    val poliwag = mapOf(
-        "ÁGUA" to listOf("FOGO", "TERRA", "PEDRA")
-    )
-
-    val poliwhirl = mapOf(
-        "ÁGUA" to listOf("FOGO", "TERRA", "PEDRA")
-    )
-
-    val poliwrath = mapOf(
-        "ÁGUA" to listOf("FOGO", "TERRA", "PEDRA"),
-        "LUTADOR" to listOf("NORMAL", "PEDRA", "GELO", "AÇO", "SOMBRIO")
-    )
-
-    val abra = mapOf(
-        "PSÍQUICO" to listOf("VENENO", "LUTADOR")
-    )
-
-    val kadabra = mapOf(
-        "PSÍQUICO" to listOf("VENENO", "LUTADOR")
-    )
-
-    val alakazam = mapOf(
-        "PSÍQUICO" to listOf("VENENO", "LUTADOR")
-    )
-
-    val machop = mapOf(
-        "LUTADOR" to listOf("NORMAL", "PEDRA", "GELO", "AÇO", "SOMBRIO")
-    )
-
-    val machoke = mapOf(
-        "LUTADOR" to listOf("NORMAL", "PEDRA", "GELO", "AÇO", "SOMBRIO")
-    )
-
-    val machamp = mapOf(
-        "LUTADOR" to listOf("NORMAL", "PEDRA", "GELO", "AÇO", "SOMBRIO")
-    )
-
-    val bellsprout = mapOf(
-        "GRAMA" to listOf("ÁGUA", "TERRA", "PEDRA"),
-        "VENENO" to listOf("FADA", "PLANTA")
-    )
-
-    val weepinbell = mapOf(
-        "GRAMA" to listOf("ÁGUA", "TERRA", "PEDRA"),
-        "VENENO" to listOf("FADA", "PLANTA")
-    )
-
-    val victreebel = mapOf(
-        "GRAMA" to listOf("ÁGUA", "TERRA", "PEDRA"),
-        "VENENO" to listOf("FADA", "PLANTA")
-    )
-
-    val tentacool = mapOf(
-        "ÁGUA" to listOf("FOGO", "TERRA", "PEDRA"),
-        "VENENO" to listOf("FADA", "PLANTA")
-    )
-
-    val tentacruel = mapOf(
-        "ÁGUA" to listOf("FOGO", "TERRA", "PEDRA"),
-        "VENENO" to listOf("FADA", "PLANTA")
-    )
-
-    val geodude = mapOf(
-        "PEDRA" to listOf("FOGO", "GELO", "VOADOR", "INSETO"),
-        "TERRA" to listOf("ELÉTRICO", "VENENO", "PEDRA", "AÇO", "FOGO")
-    )
+    var duracaoDelay: Long = 2000
+    var duracaoDelay2: Long = 6000
 
-    val graveler = mapOf(
-        "PEDRA" to listOf("FOGO", "GELO", "VOADOR", "INSETO"),
-        "TERRA" to listOf("ELÉTRICO", "VENENO", "PEDRA", "AÇO", "FOGO")
+    println(
+        "Este programa possui delays de ${(duracaoDelay/1000)} segundos entre prints\npara tornar a experiência mais imersiva." +
+                "\nGostaria de desativá-los?" +
+                "\nS - sim || N - não"
     )
+    val semDelay = readln()
 
-    val golem = mapOf(
-        "PEDRA" to listOf("FOGO", "GELO", "VOADOR", "INSETO"),
-        "TERRA" to listOf("ELÉTRICO", "VENENO", "PEDRA", "AÇO", "FOGO")
-    )
-
-    val ponyta = mapOf(
-        "FOGO" to listOf("PLANTA", "AÇO", "GELO", "INSETO")
-    )
-
-    val rapidash = mapOf(
-        "FOGO" to listOf("PLANTA", "AÇO", "GELO", "INSETO")
-    )
-
-    val slowpoke = mapOf(
-        "ÁGUA" to listOf("FOGO", "TERRA", "PEDRA"),
-        "PSÍQUICO" to listOf("VENENO", "LUTADOR")
-    )
-
-    val slowbro = mapOf(
-        "ÁGUA" to listOf("FOGO", "TERRA", "PEDRA"),
-        "PSÍQUICO" to listOf("VENENO", "LUTADOR")
-    )
-
-    val magnemite = mapOf(
-        "ELÉTRICO" to listOf("ÁGUA", "VOADOR"),
-        "AÇO" to listOf("GELO", "ROCHA", "FADA")
-    )
-
-    val magneton = mapOf(
-        "ELÉTRICO" to listOf("ÁGUA", "VOADOR"),
-        "AÇO" to listOf("GELO", "ROCHA", "FADA")
-    )
-
-    val farfetchd = mapOf(
-        "NORMAL" to listOf("NENHUMA"),
-        "VOADOR" to listOf("PLANTA", "INSETO", "LUTADOR")
-    )
-
-    val doduo = mapOf(
-        "NORMAL" to listOf("NENHUMA"),
-        "VOADOR" to listOf("PLANTA", "INSETO", "LUTADOR")
-    )
-
-    val dodrio = mapOf(
-        "NORMAL" to listOf("NENHUMA"),
-        "VOADOR" to listOf("PLANTA", "INSETO", "LUTADOR")
-    )
-
-    val seel = mapOf(
-        "ÁGUA" to listOf("FOGO", "TERRA", "PEDRA")
-    )
-
-    val dewgong = mapOf(
-        "ÁGUA" to listOf("FOGO", "TERRA", "PEDRA"),
-        "GELO" to listOf("PLANTA", "VOADOR", "DRAGÃO", "TERRA")
-    )
-
-    val grimer = mapOf(
-        "VENENO" to listOf("FADA", "PLANTA")
-    )
-
-    val muk = mapOf(
-        "VENENO" to listOf("FADA", "PLANTA")
-    )
-
-    val shellder = mapOf(
-        "ÁGUA" to listOf("FOGO", "TERRA", "PEDRA")
-    )
-
-    val cloyster = mapOf(
-        "ÁGUA" to listOf("FOGO", "TERRA", "PEDRA"),
-        "GELO" to listOf("PLANTA", "VOADOR", "DRAGÃO", "TERRA")
-    )
-
-    val gastly = mapOf(
-        "FANTASMA" to listOf("FANTASMA", "PSÍQUICO"),
-        "VENENO" to listOf("FADA", "PLANTA")
-    )
-
-    val haunter = mapOf(
-        "FANTASMA" to listOf("FANTASMA", "PSÍQUICO"),
-        "VENENO" to listOf("FADA", "PLANTA")
-    )
-
-    val gengar = mapOf(
-        "FANTASMA" to listOf("FANTASMA", "PSÍQUICO"),
-        "VENENO" to listOf("FADA", "PLANTA")
-    )
-
-    val onix = mapOf(
-        "PEDRA" to listOf("FOGO", "GELO", "VOADOR", "INSETO"),
-        "TERRA" to listOf("ELÉTRICO", "VENENO", "PEDRA", "AÇO", "FOGO")
-    )
-
-    val drowzee = mapOf(
-        "PSÍQUICO" to listOf("VENENO", "LUTADOR")
-    )
-
-    val hypno = mapOf(
-        "PSÍQUICO" to listOf("VENENO", "LUTADOR")
-    )
-
-    val krabby = mapOf(
-        "ÁGUA" to listOf("FOGO", "TERRA", "PEDRA")
-    )
-
-    val kingler = mapOf(
-        "ÁGUA" to listOf("FOGO", "TERRA", "PEDRA")
-    )
-
-    val voltorb = mapOf(
-        "ELÉTRICO" to listOf("ÁGUA", "VOADOR")
-    )
-
-    val electrode = mapOf(
-        "ELÉTRICO" to listOf("ÁGUA", "VOADOR")
-    )
-
-    val exeggcute = mapOf(
-        "GRAMA" to listOf("ÁGUA", "TERRA", "PEDRA"),
-        "PSÍQUICO" to listOf("VENENO", "LUTADOR")
-    )
-
-    val exeggutor = mapOf(
-        "GRAMA" to listOf("ÁGUA", "TERRA", "PEDRA"),
-        "PSÍQUICO" to listOf("VENENO", "LUTADOR")
-    )
-
-    val cubone = mapOf(
-        "TERRA" to listOf("ELÉTRICO", "VENENO", "PEDRA", "AÇO", "FOGO")
-    )
-
-    val marowak = mapOf(
-        "TERRA" to listOf("ELÉTRICO", "VENENO", "PEDRA", "AÇO", "FOGO")
-    )
-
-    val hitmonlee = mapOf(
-        "LUTADOR" to listOf("NORMAL", "PEDRA", "GELO", "AÇO", "SOMBRIO")
-    )
-
-    val hitmonchan = mapOf(
-        "LUTADOR" to listOf("NORMAL", "PEDRA", "GELO", "AÇO", "SOMBRIO")
-    )
-
-    val lickitung = mapOf(
-        "NORMAL" to listOf("NENHUMA")
-    )
-
-    val koffing = mapOf(
-        "VENENO" to listOf("FADA", "PLANTA")
-    )
-
-    val weezing = mapOf(
-        "VENENO" to listOf("FADA", "PLANTA")
-    )
-
-    val rhyhorn = mapOf(
-        "TERRA" to listOf("ELÉTRICO", "VENENO", "PEDRA", "AÇO", "FOGO"),
-        "PEDRA" to listOf("FOGO", "GELO", "VOADOR", "INSETO")
-    )
-
-    val rhydon = mapOf(
-        "TERRA" to listOf("ELÉTRICO", "VENENO", "PEDRA", "AÇO", "FOGO"),
-        "PEDRA" to listOf("FOGO", "GELO", "VOADOR", "INSETO")
-    )
-
-    val chansey = mapOf(
-        "NORMAL" to listOf("NENHUMA")
-    )
-
-    val tangela = mapOf(
-        "GRAMA" to listOf("ÁGUA", "TERRA", "PEDRA")
-    )
-
-    val kangaskhan = mapOf(
-        "NORMAL" to listOf("NENHUMA")
-    )
-
-    val horsea = mapOf(
-        "ÁGUA" to listOf("FOGO", "TERRA", "PEDRA")
-    )
-
-    val seadra = mapOf(
-        "ÁGUA" to listOf("FOGO", "TERRA", "PEDRA")
-    )
-
-    val goldeen = mapOf(
-        "ÁGUA" to listOf("FOGO", "TERRA", "PEDRA")
-    )
-
-    val seaking = mapOf(
-        "ÁGUA" to listOf("FOGO", "TERRA", "PEDRA")
-    )
-
-    val staryu = mapOf(
-        "ÁGUA" to listOf("FOGO", "TERRA", "PEDRA")
-    )
-
-    val starmie = mapOf(
-        "ÁGUA" to listOf("FOGO", "TERRA", "PEDRA"),
-        "PSÍQUICO" to listOf("VENENO", "LUTADOR")
-    )
-
-    val mrMime = mapOf(
-        "PSÍQUICO" to listOf("VENENO", "LUTADOR"),
-        "FADA" to listOf("LUTADOR", "DRAGÃO", "TREVAS")
-    )
-
-    val scyther = mapOf(
-        "INSETO" to listOf("PLANTA", "SOMBRIO", "PSÍQUICO"),
-        "VOADOR" to listOf("PLANTA", "INSETO", "LUTADOR")
-    )
-
-    val jynx = mapOf(
-        "GELO" to listOf("PLANTA", "VOADOR", "DRAGÃO", "TERRA"),
-        "PSÍQUICO" to listOf("VENENO", "LUTADOR")
-    )
-
-    val electabuzz = mapOf(
-        "ELÉTRICO" to listOf("ÁGUA", "VOADOR")
-    )
-
-    val magmar = mapOf(
-        "FOGO" to listOf("PLANTA", "AÇO", "GELO", "INSETO")
-    )
-
-    val pinsir = mapOf(
-        "INSETO" to listOf("PLANTA", "SOMBRIO", "PSÍQUICO")
-    )
-
-    val tauros = mapOf(
-        "NORMAL" to listOf("NENHUMA")
-    )
-
-    val magikarp = mapOf(
-        "ÁGUA" to listOf("FOGO", "TERRA", "PEDRA")
-    )
-
-    val gyarados = mapOf(
-        "ÁGUA" to listOf("FOGO", "TERRA", "PEDRA"),
-        "VOADOR" to listOf("PLANTA", "INSETO", "LUTADOR")
-    )
-
-    val lapras = mapOf(
-        "ÁGUA" to listOf("FOGO", "TERRA", "PEDRA"),
-        "GELO" to listOf("PLANTA", "VOADOR", "DRAGÃO", "TERRA")
-    )
+    if (semDelay.uppercase() == "S") {
+        duracaoDelay = 0
+        duracaoDelay2 = 0
+    }
 
-    val ditto = mapOf(
-        "NORMAL" to listOf("NENHUMA")
+    println(
+        "Você é um menino ou uma menina?" +
+                "\n1 - Menino || 2 - Menina"
     )
+    val generoP1 = readln()
 
-    val eevee = mapOf(
-        "NORMAL" to listOf("NENHUMA")
-    )
-
-    val vaporeon = mapOf(
-        "ÁGUA" to listOf("FOGO", "TERRA", "PEDRA")
-    )
-
-    val jolteon = mapOf(
-        "ELÉTRICO" to listOf("ÁGUA", "VOADOR")
-    )
-
-    val flareon = mapOf(
-        "FOGO" to listOf("PLANTA", "AÇO", "GELO", "INSETO")
-    )
-
-    val porygon = mapOf(
-        "NORMAL" to listOf("NENHUMA")
-    )
-
-    val omanyte = mapOf(
-        "PEDRA" to listOf("FOGO", "GELO", "VOADOR", "INSETO"),
-        "ÁGUA" to listOf("FOGO", "TERRA", "PEDRA")
-    )
-
-    val omastar = mapOf(
-        "PEDRA" to listOf("FOGO", "GELO", "VOADOR", "INSETO"),
-        "ÁGUA" to listOf("FOGO", "TERRA", "PEDRA")
-    )
-
-    val kabuto = mapOf(
-        "NOME" to "Kabuto",
-        "PEDRA" to listOf("FOGO", "GELO", "VOADOR", "INSETO"),
-        "ÁGUA" to listOf("FOGO", "TERRA", "PEDRA")
-    )
-
-    val kabutops = mapOf(
-        "PEDRA" to listOf("FOGO", "GELO", "VOADOR", "INSETO"),
-        "ÁGUA" to listOf("FOGO", "TERRA", "PEDRA")
-    )
-
-    val aerodactyl = mapOf(
-        "PEDRA" to listOf("FOGO", "GELO", "VOADOR", "INSETO"),
-        "VOADOR" to listOf("PLANTA", "INSETO", "LUTADOR")
-    )
-
-    val snorlax = mapOf(
-        "NORMAL" to listOf("NENHUMA")
-    )
-
-    val articuno = mapOf(
-        "GELO" to listOf("PLANTA", "VOADOR", "DRAGÃO", "TERRA"),
-        "VOADOR" to listOf("PLANTA", "INSETO", "LUTADOR")
-    )
-
-    val zapdos = mapOf(
-        "ELÉTRICO" to listOf("ÁGUA", "VOADOR"),
-        "VOADOR" to listOf("PLANTA", "INSETO", "LUTADOR")
-    )
-
-    val moltres = mapOf(
-        "FOGO" to listOf("PLANTA", "AÇO", "GELO", "INSETO"),
-        "VOADOR" to listOf("PLANTA", "INSETO", "LUTADOR")
-    )
-
-    val dratini = mapOf(
-        "DRAGÃO" to listOf("DRAGÃO")
-    )
-
-    val dragonair = mapOf(
-        "DRAGÃO" to listOf("DRAGÃO")
-    )
-
-    val dragonite = mapOf(
-        "DRAGÃO" to listOf("DRAGÃO"),
-        "VOADOR" to listOf("PLANTA", "INSETO", "LUTADOR")
-    )
-
-    val mewtwo = mapOf(
-        "PSÍQUICO" to listOf("VENENO", "LUTADOR")
-    )
-
-    val mew = mapOf(
-        "PSÍQUICO" to listOf("VENENO", "LUTADOR")
-    )
+    Thread.sleep(duracaoDelay)
 
+    if (generoP1.toInt() == 1) {
+        println("Entendi. Um menino.")
+    } else {
+        println("Entendi. Uma menina.")
+    }
 
-    //Boa parte das variavéis não tem uso no momento
+    Thread.sleep(duracaoDelay)
 
     println("Como você quer ser chamado?")
-    val apelido = readln()
+    val apelidoP1 = readln()
 
-    //Thread.sleep(2000)
+    Thread.sleep(duracaoDelay)
 
-    println("$apelido é? Que interessante.")
+    println("$apelidoP1 é? Que interessante.")
 
-    //Thread.sleep(2000)
+    Thread.sleep(duracaoDelay)
+
+    println("$apelidoP1, vejo que há alguém do seu lado.")
+
+    Thread.sleep(duracaoDelay)
+
+    println("\nEssa pessoa também é um garoto?" +
+            "\nS - sim || N - não")
+    val generoP2 = readln()
+
+    Thread.sleep(duracaoDelay)
+
+    if (generoP2.uppercase() == "S") {
+        println(
+            "Bem que eu estava reconhecendo, é o meu neto!" +
+                    "\nPor mais que não nos pareçemos."
+        )
+
+        Thread.sleep(duracaoDelay)
+
+        println("Hmm. Estou tentando lembrar o nome dele...")
+
+        Thread.sleep(duracaoDelay)
+
+        println("Vocês sempre foram rivais.")
+
+        Thread.sleep(duracaoDelay)
+
+        println("Pode me ajudar?")
+
+        Thread.sleep(duracaoDelay)
+
+        println("Qual era o nome do meu neto?")
+    } else {
+        println(
+            "Bem que eu estava reconhecendo, é a minha neta." +
+                    "\nPor mais que não nos pareçemos."
+        )
+
+        Thread.sleep(duracaoDelay)
+
+        println("Hmm. Estou tentando lembrar o nome dela...")
+
+        Thread.sleep(duracaoDelay)
+
+        println("Vocês sempre foram rivais.")
+
+        Thread.sleep(duracaoDelay)
+
+        println("Pode me ajudar?")
+
+        Thread.sleep(duracaoDelay)
+
+        println("Qual era o nome da minha neta?")
+    }
+    val nomeP2 = readln()
+
+    Thread.sleep(duracaoDelay)
+
+    println("Verdade! $nomeP2! Isso mesmo.")
+
+    Thread.sleep(duracaoDelay)
 
     println(
-        "\nQuantos Pokémon batalharão?" +
-                "\nEscolha:" +
-                "\n1 - Um" +
-                "\n2 - Dois" +
-                "\n3 - Três"
+        "Pelo que vejo, vocês estão aqui para batalhar." +
+                "\nHora de iniciar os preparativos então."
     )
-    val qtdePokemonLuta = readln().toInt()
 
-    //Thread.sleep(2000)
+    Thread.sleep(duracaoDelay)
 
-    when (qtdePokemonLuta) {
-        1 -> println("\nUm Pokémon será então.")
-        2 -> println("\nDois Pokémon será então.")
-        3 -> println("\nTrês Pokémon será então.")
+    var qtdePokemonLuta: String
+
+    do {
+        println(
+            "\nQuantos Pokémon batalharão?" +
+                    "\nEscolha:" +
+                    "\n1 - Um" +
+                    "\n2 - Dois" +
+                    "\n3 - Três"
+        )
+
+        qtdePokemonLuta = readln()
+
+        if (regexPokemonBatalha.matches(qtdePokemonLuta)) {
+            when (qtdePokemonLuta.toInt()) {
+                1 -> {
+                    Thread.sleep(duracaoDelay)
+                    println("\nUm Pokémon será então.\n")
+                }
+                2 -> {
+                    Thread.sleep(duracaoDelay)
+                    println("\nDois Pokémon será então.\n")
+                }
+                3 -> {
+                    Thread.sleep(duracaoDelay)
+                    println("\nTrês Pokémon será então.\n")
+                }
+            }
+        } else {
+            println("Caractere inválido")
+        }
+
+    } while (!regexPokemonBatalha.matches(qtdePokemonLuta))
+
+    Thread.sleep(duracaoDelay2)
+
+    println(
+        "Quais dos 151 Pokémon vai querer usar, $apelidoP1?" +
+                "\nSelecione:"
+    )
+
+    Thread.sleep(duracaoDelay)
+
+    for ((chave, valor) in mapaPokemons) {
+        val pokemon = valor as? Map<*, *>
+        val nomePokemon = pokemon?.get("NOME")
+        println("$chave: $nomePokemon")
     }
 
+    var time_Player1: MutableMap<Int, Map<String, Any>?> = mutableMapOf()
+    var time_Player2: MutableMap<Int, Map<String, Any>?> = mutableMapOf()
+    var repeticao = 0
 
+    do {
+        var escolha: String
+
+        do {
+
+            escolha = readln()
+
+            if (!regexEscolhaPokemon.matches(escolha)) {
+                println(
+                    "\nPokémon indisponível ou caractere inválido" +
+                            "\nTente novamente."
+                )
+            }
+
+        } while (!regexEscolhaPokemon.matches(escolha))
+
+        var pokemonEscolhido = mapaPokemons[escolha.toInt()]
+
+        time_Player1[repeticao] = pokemonEscolhido
+
+        println("${pokemonEscolhido?.get("NOME")} escolhido.")
+
+        repeticao++
+
+    } while (repeticao != qtdePokemonLuta.toInt())
     //Thread.sleep(2000)
 
-    mapaPokemons.forEach { chave, valor ->
-        val nome = valor["NOME"]
-        println(nome)
+    println("\nTime de $apelidoP1:")
+    for ((chave, valor) in time_Player1) {
+        val pokemon = valor as? Map<*, *>
+        val nomePokemon = pokemon?.get("NOME")
+        println("${chave + 1}: $nomePokemon")
     }
 
-
-    println(
-        "\nQuais dos 151 Pokémon vai querer usar, $apelido?" +
-                "${)}"+
-                "\nSelecione:" +
-                "\n1 - ${["NOME"]}"
-    )
-
-
-    val pkmnescolhido = readln().toInt()
-
-    //Thread.sleep(2000)
-
-    println("\nBulbasauro escolhido.")
-
-    /*val time_Player1 = mapOf(
-        1 to bulbasauro,
-        2 to ivisauro
-    )
-
-    val time_Computador = mapOf(
-        1 to ivisauro
-    )
-
-    println(
-        "\nTime de $apelido:" +
-                "\n1 - ${time_Player1[1]?.get("NOME")}\n"
-    )
-
+    /*
     //Thread.sleep(2000)
 
     println(
