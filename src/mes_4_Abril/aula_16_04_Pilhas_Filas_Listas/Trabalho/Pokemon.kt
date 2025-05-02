@@ -162,8 +162,8 @@ fun main() {
         println("$chave: $nomePokemon")
     }
 
-    var time_Player1: MutableMap<Int, Map<String, Any>?> = mutableMapOf()
-    var time_Player2: MutableMap<Int, Map<String, Any>?> = mutableMapOf()
+    val timePlayer1: MutableMap<Int, Map<String, Any>?> = mutableMapOf()
+    val timePlayer2: MutableMap<Int, Map<String, Any>?> = mutableMapOf()
     var repeticao = 0
 
     do {
@@ -182,9 +182,9 @@ fun main() {
 
         } while (!regexEscolhaPokemon.matches(escolha))
 
-        var pokemonEscolhido = mapaPokemons[escolha.toInt()]
+        val pokemonEscolhido = mapaPokemons[escolha.toInt()]
 
-        time_Player1[repeticao] = pokemonEscolhido
+        timePlayer1[repeticao] = pokemonEscolhido
 
         println("${pokemonEscolhido?.get("NOME")} escolhido.")
 
@@ -194,7 +194,7 @@ fun main() {
     //Thread.sleep(2000)
 
     println("\nTime de $apelidoP1:")
-    for ((chave, valor) in time_Player1) {
+    for ((chave, valor) in timePlayer1) {
         val pokemon = valor as? Map<*, *>
         val nomePokemon = pokemon?.get("NOME")
         println("${chave + 1}: $nomePokemon")
