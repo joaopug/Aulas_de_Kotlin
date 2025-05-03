@@ -1,4 +1,11 @@
-package mes_4_Abril.aula_16_04_Pilhas_Filas_Listas.Trabalho
+package mes_4_abril.aula_16_04_Pilhas_Filas_Listas.Trabalho
+//
+//Aproveita a aberração "GerarAtaque" e pega o tipo do ataque também
+//
+//Explicação do que acontece:
+//-> Chave "ATAQUES" (um map novo que criei) ->
+//-> Chave ataque escolhido (1 a 4) ->
+//-> Valor "tipo" (indíce 2)
 
 fun pegarTipoDoAtaque(pokemon: Map<String, Any>?, chave: String, ataque: Int, tipoAtq: Int): String {
 

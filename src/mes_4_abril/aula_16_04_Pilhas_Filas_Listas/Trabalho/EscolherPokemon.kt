@@ -1,4 +1,4 @@
-package mes_4_Abril.aula_16_04_Pilhas_Filas_Listas.Trabalho
+package mes_4_abril.aula_16_04_Pilhas_Filas_Listas.Trabalho
 
 val bulbasaur: Map<String, Any> = mapOf(
     "NOME" to "Bulbasaur",
@@ -688,7 +688,7 @@ val mew = mapOf(
     "PSÍQUICO" to listOf("VENENO", "LUTADOR")
 )
 
-val mapaPokemons: Map<Int, Map<String, Any>> = mapOf(
+val mapaTodosPokemon: Map<Int, Map<String, Any>> = mapOf(
     1 to bulbasaur,
     2 to ivysaur,
     3 to venusaur,
