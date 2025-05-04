@@ -26,7 +26,7 @@ fun main(){
     var num: String
 
     do {
-        println("Digita")
+        println("Digite um número acima de 1")
         num = readln()
     } while(!regex.matches(num))
 
