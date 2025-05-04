@@ -1,11 +1,15 @@
 package mes_3_marco.aula_19_03_Crud_Festa
 
 //Variável Global
-var listaConvidados: MutableList<Convidado> = mutableListOf<Convidado>()
+var listaConvidados: MutableList<Convidado> = mutableListOf()
 
-val expressaoRegularMenu = Regex("[0-5]")
+val regexSomenteLetras = Regex("^[A-Za-z]+$")
 
-val expressaoRegularFun = Regex("\\d]")
+val regexSomenteNro1A5 = Regex("[0-5]")
+
+val regexSomenteNros = Regex("\\d")
+
+val regexDecisaoSN = Regex("^[SN]$")
 
 
 fun main() {
@@ -28,7 +32,7 @@ private fun menu() {
 
         val opcao = readln()
 
-        if (expressaoRegularMenu.matches(opcao)) {
+        if (regexSomenteNro1A5.matches(opcao)) {
             when (opcao.toInt()) {
                 1 -> {
                     println("\nCadastrando...")
@@ -69,10 +73,18 @@ private fun cadastrar() {
     //Instância
     val convidado = Convidado()
 
-    println("Qual é o seu nome?")
+    println(
+        "Qual é o seu nome?" +
+                "\n(Somente letras)"
+    )
     //val nome = readln()
-    convidado.nome = readln()
+    do {
+        convidado.nome = readln()
 
+        if (!regexSomenteLetras.matches(convidado.nome)) {
+            println("\nSó dá para digitar letras!")
+        }
+    } while (!regexSomenteLetras.matches(convidado.nome))
     println("Qual vai ser o presente?")
     //val presente = readln()
     convidado.presente = readln()
@@ -110,17 +122,36 @@ private fun editar(): Boolean {
 
         listar()
 
-        println("\nQual posição deseja editar?")
-        val posicao = readln().toInt()
-        if (expressaoRegularFun.matches(posicao.toString())) {
-            println("O convidado vai? S/N")
-            val resposta = readln().trim().uppercase()
-            when (resposta) {
-                "S" -> listaConvidados[posicao].presenca = true
-                "N" -> listaConvidados[posicao].presenca = false
+        println(
+            "\nQual posição deseja editar?" +
+                    "\n(Somente números)"
+        )
+
+        do {
+            val posicao = readln()
+
+            if (regexSomenteNros.matches(posicao)) {
+
+                println("\nO convidado vai? S/N")
+
+                do {
+                    val resposta = readln().uppercase()
+
+                    if (regexDecisaoSN.matches(resposta)) {
+                        when (resposta) {
+                            "S" -> listaConvidados[posicao.toInt()].presenca = true
+                            "N" -> listaConvidados[posicao.toInt()].presenca = false
+                        }
+                        println("Edição realizada com sucesso!")
+                    } else {
+                        println("\nResposta inválida.")
+                    }
+                } while (!regexDecisaoSN.matches(resposta))
+            } else {
+                println("\nIsso não é um número cara.")
             }
-            println("Edição realizada com sucesso!")
-        }
+
+        } while (!regexSomenteNros.matches(posicao))
     }
     return true
 }
@@ -130,16 +161,28 @@ private fun excluir(): Boolean {
     if (validar()) {
         listar()
 
-        println("Qual posição deseja exluir?")
-        val posicao = readln().toInt()
+        println(
+            "Qual posição deseja exluir?" +
+                    "\n(Somente números)"
+        )
 
-        listaConvidados.removeAt(posicao)
-        /*listaConvidados.
-        convidado.nome = ""
-        convidado.alimento = ""
-        convidado.presente = ""
-        convidado.presenca = false*/
-        print("Convidado exluido.")
+        do {
+
+            val posicao = readln()
+
+            if (regexSomenteNros.matches(posicao)) {
+
+                listaConvidados.removeAt(posicao.toInt())
+                /*listaConvidados.
+                convidado.nome = ""
+                convidado.alimento = ""
+                convidado.presente = ""
+                convidado.presenca = false*/
+                print("Convidado exluido.")
+            } else {
+                println("\nIsso não é um número cara.")
+            }
+        } while (!regexSomenteNros.matches(posicao))
     }
     return true
 }
@@ -147,21 +190,32 @@ private fun excluir(): Boolean {
 //QUESTÃO 4 - Validar para a variável (busca) só aceitar números
 private fun busca() {
     var i = 0//indice da lista
-    println("Digite o nome da pessoa que você busca: ")
-    val busca = readln()
-    listaConvidados.forEach { convidado ->
-        //O contains busca por uma string dentro de uma outra string
-        if (convidado.nome.contains(busca)) {
-            println(
-                "\nPosição: ${i++}\n" +
-                        "Nome: ${convidado.nome}\n" +
-                        "Presente: ${convidado.presente}\n" +
-                        "Restrição: ${convidado.alimento}\n" +
-                        "Vai ir na festa: ${convidado.presenca}"
-            )
+    println(
+        "Digite o nome da pessoa que você busca: " +
+                "\n(Somente letras)"
+    )
+
+    do {
+        val busca = readln().uppercase()
+
+        if (regexSomenteLetras.matches(busca)) {
+            listaConvidados.forEach { convidado ->
+                //O contains busca por uma string dentro de uma outra string
+                if (convidado.nome.uppercase().contains(busca)) {
+                    println(
+                        "\nPosição: ${i++}\n" +
+                                "Nome: ${convidado.nome}\n" +
+                                "Presente: ${convidado.presente}\n" +
+                                "Restrição: ${convidado.alimento}\n" +
+                                "Vai ir na festa: ${convidado.presenca}"
+                    )
+                }
+                i++
+            }
+        } else {
+            println("Isso aí não é letra.")
         }
-        i++
-    }
+    } while (!regexSomenteLetras.matches(busca))
 }
 
 private fun validar(): Boolean {
