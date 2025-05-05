@@ -8,14 +8,14 @@ package mes_4_abril.aula_16_04_Pilhas_Filas_Listas.Trabalho
 //-> Valor "dano" (indíce 1)
 //
 //Essa explicação é só lógica, se quer saber que cada coisa faz, melhor pedir pro Home
-fun gerarDanoAtaque(pokemon: Map<String, Any>?, chave: String, ataque: Int, valorAtq: Int): Double {
+fun gerarDanoAtq(pokemon: Map<String, Any>?, chave: String, ataque: Int, valorAtq: Int): Int {
 
     val ataques = pokemon?.get(chave) as? Map<*, *>
 
     val ataqueSelecionado = ataques?.get(ataque) as? List<*>
 
-    val danoDoAtaque = ataqueSelecionado?.get(valorAtq) as Double
+    val forcaDoAtaque = ataqueSelecionado?.get(valorAtq) as Int
 
-    return danoDoAtaque
+    return forcaDoAtaque
 
 }

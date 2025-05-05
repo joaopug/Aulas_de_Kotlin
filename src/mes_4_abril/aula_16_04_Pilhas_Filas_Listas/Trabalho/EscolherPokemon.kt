@@ -2,47 +2,124 @@ package mes_4_abril.aula_16_04_Pilhas_Filas_Listas.Trabalho
 
 val bulbasaur: Map<String, Any> = mapOf(
     "NOME" to "Bulbasaur",
-    "GRAMA" to listOf("ÁGUA", "TERRA", "PEDRA"),
-    "DESVANTAGENS" to listOf("VOADOR", "VENENO", "INSETO", "FOGO", "GELO"),
-    "VENENO" to listOf("FADA, PLANTA"),
-    "VIDA" to 10.0,
+    "TIPOS" to listOf("GRAMA", "VENENO"),
+    "RESISTÊNCIAS" to listOf("ÁGUA", "ELÉTRICO", "GRAMA", "LUTADOR", "FADA"),
+    "DESVANTAGENS" to listOf("FOGO", "PSÍQUICO", "GELO", "VOADOR"),
+    "STATUS" to mapOf(
+        "VIDA" to 294.0,
+        "ATAQUE" to 216.0,
+        "DEFESA" to 216.0,
+        "ATAQUE_ESPECIAL" to 251.0,
+        "DEFESA_ESPECIAL" to 251.0,
+    ),
     "ATAQUES" to mapOf(
-        1 to listOf("Chicote de vinha", 8.0, "GRAMA"),
-        2 to listOf("Tocar grama", 5.0, "GRAMA"),
-        3 to listOf("Lança-chamas", 20.0, "FOGO"),
-        4 to listOf("Bomba de semente", 10.0, "GRAMA"),
+        1 to listOf("Chicote de Vinha", 45, "GRAMA", "FÍSICO"),
+        2 to listOf("Semente Bombástica", 80, "GRAMA", "ESPECIAL"),
+        3 to listOf("Cabeçada", 40, "NORMAL", "FÍSICO"),
+        4 to listOf("Raio Solar", 120, "GRAMA", "ESPECIAL")
     )
 )
 
 val ivysaur: Map<String, Any> = mapOf(
-    "GRAMA" to listOf("ÁGUA", "TERRA", "PEDRA"),
-    "DESVANTAGENS" to listOf("VOADOR", "VENENO", "INSETO", "FOGO", "GELO"),
-    "VENENO" to listOf("FADA, PLANTA"),
-    "VIDA" to 100.0,
+    "NOME" to "Ivysaur",
+    "TIPOS" to listOf("GRAMA", "VENENO"),
+    "RESISTÊNCIAS" to listOf("ÁGUA", "ELÉTRICO", "GRAMA", "LUTADOR", "FADA"),
+    "DESVANTAGENS" to listOf("FOGO", "PSÍQUICO", "GELO", "VOADOR"),
+    "STATUS" to mapOf(
+        "VIDA" to 324.0,
+        "ATAQUE" to 245.0,
+        "DEFESA" to 247.0,
+        "ATAQUE_ESPECIAL" to 284.0,
+        "DEFESA_ESPECIAL" to 284.0,
+    ),
     "ATAQUES" to mapOf(
-        1 to listOf("Chicote de vinha", 8.0, "GRAMA"),
-        2 to listOf("Tocar grama", 5.0, "GRAMA"),
-        3 to listOf("Lança-chamas", 20.0, "FOGO"),
-        4 to listOf("Bomba de semente", 10.0, "GRAMA"),
+        1 to listOf("Bomba de Sementes", 80, "GRAMA", "ESPECIAL"),
+        2 to listOf("Investida", 40, "NORMAL", "FÍSICO"),
+        3 to listOf("Bomba de Lodo", 90, "VENENO", "ESPECIAL"),
+        4 to listOf("Raio da Cura", 0, "NORMAL", "ESPECIAL")
     )
 )
 
 val venusaur: Map<String, Any> = mapOf(
-    "GRAMA" to listOf("ÁGUA", "TERRA", "PEDRA"),
-    "VENENO" to listOf("FADA, PLANTA")
+    "NOME" to "Venusaur",
+    "TIPOS" to listOf("GRAMA", "VENENO"),
+    "RESISTÊNCIAS" to listOf("ÁGUA", "ELÉTRICO", "GRAMA", "LUTA", "FADA"),
+    "DESVANTAGENS" to listOf("FOGO", "GELO", "PSÍQUICO", "VOADOR"),
+    "STATUS" to mapOf(
+        "VIDA" to 364.0,
+        "ATAQUE" to 289.0,
+        "DEFESA" to 291.0,
+        "ATAQUE_ESPECIAL" to 328.0,
+        "DEFESA_ESPECIAL" to 328.0
+    ),
+    "ATAQUES" to mapOf(
+        1 to listOf("Bomba de Lodo", 90, "VENENO", "ESPECIAL"),
+        2 to listOf("Pontada Dupla", 120, "NORMAL", "FÍSICO"),
+        3 to listOf("Raio Solar", 120, "GRAMA", "ESPECIAL"),
+        4 to listOf("Terremoto", 100, "TERRA", "FÍSICO")
+    )
 )
 
 val charmander: Map<String, Any> = mapOf(
-    "FOGO" to listOf("PLANTA", "AÇO", "GELO", "INSETO")
+    "NOME" to "Charmander",
+    "TIPOS" to listOf("FOGO"),
+    "RESISTÊNCIAS" to listOf("FOGO", "GRAMA", "GELO", "INSETO", "FADA", "METAL"),
+    "DESVANTAGENS" to listOf("ÁGUA", "TERRA", "PEDRA"),
+    "STATUS" to mapOf(
+        "VIDA" to 282.0,
+        "ATAQUE" to 223.0,
+        "DEFESA" to 203.0,
+        "ATAQUE_ESPECIAL" to 240.0,
+        "DEFESA_ESPECIAL" to 218.0
+    ),
+    "ATAQUES" to mapOf(
+        1 to listOf("Lança-Chamas", 95, "FOGO", "ESPECIAL"),
+        2 to listOf("Garra de Metal", 50, "METAL", "FÍSICO"),
+        3 to listOf("Arranhão", 40, "NORMAL", "FÍSICO"),
+        4 to listOf("Cavar", 80, "TERRA", "FÍSICO")
+    )
 )
 
 val charmeleon: Map<String, Any> = mapOf(
-    "FOGO" to listOf("PLANTA", "AÇO", "GELO", "INSETO")
+    "NOME" to "Charmeleon",
+    "TIPOS" to listOf("FOGO"),
+    "RESISTÊNCIAS" to listOf("FOGO", "GRAMA", "GELO", "INSETO", "FADA", "METAL"),
+    "DESVANTAGENS" to listOf("ÁGUA", "TERRA", "PEDRA"),
+    "STATUS" to mapOf(
+        "VIDA" to 320.0,
+        "ATAQUE" to 249.0,
+        "DEFESA" to 236.0,
+        "ATAQUE_ESPECIAL" to 284.0,
+        "DEFESA_ESPECIAL" to 251.0,
+        "VELOCIDADE" to 284.0
+    ),
+    "ATAQUES" to mapOf(
+        1 to listOf("Lança-Chamas", 90, "FOGO", "ESPECIAL"),
+        2 to listOf("Pulso do Dragão", 85, "DRAGÃO", "ESPECIAL"),
+        3 to listOf("Mastigada", 80, "SOMBRIO", "FÍSICO"),
+        4 to listOf("Presas de Fogo", 65, "FOGO", "FÍSICO")
+    )
 )
 
 val charizard: Map<String, Any> = mapOf(
-    "FOGO" to listOf("PLANTA", "AÇO", "GELO", "INSETO"),
-    "VOADOR" to listOf("PLANTA", "INSETO", "LUTADOR")
+    "NOME" to "Charizard",
+    "TIPOS" to listOf("FOGO", "VOADOR"),
+    "RESISTÊNCIAS" to listOf("FOGO", "GRAMA", "GELO", "INSETO", "FADA", "METAL", "LUTA"),
+    "DESVANTAGENS" to listOf("ÁGUA", "ELÉTRICO", "PEDRA"),
+    "STATUS" to mapOf(
+        "VIDA" to 360.0,
+        "ATAQUE" to 293.0,
+        "DEFESA" to 280.0,
+        "ATAQUE_ESPECIAL" to 348.0,
+        "DEFESA_ESPECIAL" to 295.0,
+        "VELOCIDADE" to 328.0
+    ),
+    "ATAQUES" to mapOf(
+        1 to listOf("Lança-Chamas", 90, "FOGO", "ESPECIAL"),
+        2 to listOf("Terremoto", 100, "TERRA", "FÍSICO"),
+        3 to listOf("Pontada Dupla", 120, "NORMAL", "FÍSICO"),
+        4 to listOf("Garra de Dragão", 80, "DRAGÃO", "FÍSICO")
+    )
 )
 
 val squirtle: Map<String, Any> = mapOf(

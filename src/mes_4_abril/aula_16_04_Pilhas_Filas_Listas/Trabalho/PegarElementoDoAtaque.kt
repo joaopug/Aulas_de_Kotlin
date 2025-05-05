@@ -7,13 +7,13 @@ package mes_4_abril.aula_16_04_Pilhas_Filas_Listas.Trabalho
 //-> Chave ataque escolhido (1 a 4) ->
 //-> Valor "tipo" (indíce 2)
 
-fun pegarTipoDoAtaque(pokemon: Map<String, Any>?, chave: String, ataque: Int, tipoAtq: Int): String {
+fun pegarElementoDoAtq(pokemon: Map<String, Any>?, chave: String, ataque: Int, elementoAtq: Int): String {
 
     val ataques = pokemon?.get(chave) as? Map<*, *>
 
     val ataqueSelecionado = ataques?.get(ataque) as? List<*>
 
-    val tipoDoAtaque = ataqueSelecionado?.get(tipoAtq) as String
+    val elementoDoAtaque = ataqueSelecionado?.get(elementoAtq) as String
 
-    return tipoDoAtaque
+    return elementoDoAtaque
 }
