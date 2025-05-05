@@ -56,10 +56,7 @@ fun calculoDano(
 
     if (vrfcFraqueza) {
         danoFinal = dano * 2
-
-        println(
-            "\nO ataque foi super efetivo!"
-        )
+        println("\nO ataque foi super efetivo!")
     } else {
         danoFinal = dano
     }
