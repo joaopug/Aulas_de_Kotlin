@@ -417,7 +417,7 @@ fun main() {
                 }
             } while (!regexEscolhaAtq.matches(escolhaAtq))
 
-            val forcaAtq = gerarDanoAtq(playerAtacando[rodada], "ATAQUES", escolhaAtq.toInt(), 1)
+            val forcaAtq = pegarForcaAtq(playerAtacando[rodada], "ATAQUES", escolhaAtq.toInt(), 1)
 
             val elementoAtq = pegarElementoDoAtq(playerAtacando[rodada], "ATAQUES", escolhaAtq.toInt(), 2)
 
