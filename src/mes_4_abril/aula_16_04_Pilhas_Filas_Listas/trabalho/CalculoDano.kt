@@ -28,6 +28,7 @@ package mes_4_abril.aula_16_04_Pilhas_Filas_Listas.trabalho
 
 fun calculoDano(
     vrfcFraqueza: Boolean,
+    vrfcResistencia: Boolean,
     timeAtacando: Map<Int, Map<String, Any>?>,
     timeDefendendo: Map<Int, Map<String, Any>?>,
     rodada: Int,
@@ -57,6 +58,9 @@ fun calculoDano(
     if (vrfcFraqueza) {
         danoFinal = dano * 2
         println("\nO ataque foi super efetivo!")
+    } else if (vrfcResistencia) {
+        danoFinal = dano * 0.5
+        println("\nNão é muito efetivo...")
     } else {
         danoFinal = dano
     }
@@ -68,8 +72,8 @@ fun calculoDano(
     }
 
     println(
-        "\n$nomePokemon de $nomePlayer levou $danoFinal de dano!" +
-                "\nVida restante do $nomePokemon de $nomePlayer: $vidaPkmnInimigo1"
+        "\n$nomePokemon de $nomePlayer levou ${danoFinal.toInt()} de dano!" +
+                "\nVida restante do $nomePokemon de $nomePlayer: ${vidaPkmnInimigo1.toInt()}"
     )
     return vidaPkmnInimigo1
 }

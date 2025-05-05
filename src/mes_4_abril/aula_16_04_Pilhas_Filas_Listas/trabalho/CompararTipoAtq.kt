@@ -11,11 +11,20 @@ package mes_4_abril.aula_16_04_Pilhas_Filas_Listas.trabalho
 //   há o elemento do ataque sendo usado ->
 //-> Se tiver o elemento, retorna "true", senão retorna "false"
 //
-fun compararTipoDoAtq(pokemon: Map<String, Any>?, chave: String, tipoAtq: String): Boolean {
+fun verSeTemFraqueza(pokemon: Map<String, Any>?, chave: String, tipoAtq: String): Boolean {
 
     val fraquezasPkmn = pokemon?.get(chave) as? List<*>
 
     val tipo = fraquezasPkmn?.contains(tipoAtq) == true
+
+    return tipo
+}
+
+fun verSeTemResistencia(pokemon: Map<String, Any>?, chave: String, tipoAtq: String): Boolean {
+
+    val resistenciasPkmn = pokemon?.get(chave) as? List<*>
+
+    val tipo = resistenciasPkmn?.contains(tipoAtq) == true
 
     return tipo
 }

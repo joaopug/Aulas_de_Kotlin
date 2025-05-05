@@ -2,6 +2,8 @@ package mes_4_abril.aula_16_04_Pilhas_Filas_Listas.trabalho
 
 val regexCadastro = Regex("[1-2]")
 
+val regexNome = Regex("^[a-zA-Z0-9]+$")
+
 val regexNroPokemon = Regex("[1-3]")
 
 val regexEscolhaAtq = Regex("[1-4]")
@@ -49,7 +51,7 @@ fun main() {
 
             semDelay = readln().uppercase()
 
-            if (!regexCadastro.matches(semDelay)) {
+            if (!regexDecisaoSN.matches(semDelay)) {
                 println("Caractere inválido")
             }
 
@@ -86,7 +88,12 @@ fun main() {
         Thread.sleep(duracaoDelay)
 
         println("Como você quer ser chamado?")
-        nomeP1 = readln()
+        do {
+            nomeP1 = readln()
+            if(!regexNome.matches(nomeP1)){
+                println("Digite algo.")
+            }
+        } while (!regexNome.matches(nomeP1))
 
         Thread.sleep(duracaoDelay)
 
@@ -107,7 +114,7 @@ fun main() {
 
             generoP2 = readln().uppercase()
 
-            if (!regexCadastro.matches(generoP2)) {
+            if (!regexDecisaoSN.matches(generoP2)) {
                 println("Caractere inválido")
             }
 
@@ -194,7 +201,7 @@ fun main() {
         )
         do {
 
-            generoP1 = readln()
+            generoP2 = readln()
 
             if (!regexCadastro.matches(generoP1)) {
                 println("Caractere inválido")
@@ -344,6 +351,7 @@ fun main() {
 
 
     do {
+        println("Rodada ${rodada + 1}: iniciar!")
         do {
             var playerAtacando: Map<Int, Map<String, Any>?>
             var playerDefendendo: Map<Int, Map<String, Any>?>
@@ -354,8 +362,6 @@ fun main() {
             var vidaPokemonAtacando: Double
             var vidaPokemonDefendendo: Double
 
-            println("Rodada ${rodada + 1}: iniciar!")
-
 
             if (p1) {
                 playerAtacando = timePlayer1
@@ -364,8 +370,8 @@ fun main() {
                 nomePlayerDefendendo = nomeP2
                 vidaPokemonAtacando = vidaPkmnP1
                 vidaPokemonDefendendo = vidaPkmnP2
-                nomePokemonAtacando = timePlayer1[rodada]?.get("NOME") as String
-                nomePokemonDefendendo = timePlayer2[rodada]?.get("NOME") as String
+                nomePokemonAtacando = playerAtacando[rodada]?.get("NOME") as String
+                nomePokemonDefendendo = playerDefendendo[rodada]?.get("NOME") as String
             } else {
                 playerAtacando = timePlayer2
                 playerDefendendo = timePlayer1
@@ -373,8 +379,8 @@ fun main() {
                 nomePlayerDefendendo = nomeP1
                 vidaPokemonAtacando = vidaPkmnP2
                 vidaPokemonDefendendo = vidaPkmnP1
-                nomePokemonAtacando = timePlayer2[rodada]?.get("NOME") as String
-                nomePokemonDefendendo = timePlayer1[rodada]?.get("NOME") as String
+                nomePokemonAtacando = playerAtacando[rodada]?.get("NOME") as String
+                nomePokemonDefendendo = playerDefendendo[rodada]?.get("NOME") as String
             }
 
             val atqsPokemon = playerAtacando[rodada]?.get("ATAQUES") as? Map<*, *>
@@ -423,12 +429,15 @@ fun main() {
 
             val tipoAtq = pegarTipoDoAtq(playerAtacando[rodada], "ATAQUES", escolhaAtq.toInt(), 3)
 
-            val pkmnInimigoTemFrqz = compararTipoDoAtq(playerDefendendo[rodada], "DESVANTAGENS", elementoAtq)
+            val pkmnInimigoTemFrqz = verSeTemFraqueza(playerDefendendo[rodada], "DESVANTAGENS", elementoAtq)
+
+            val pkmnInimigoTemResistencia = verSeTemFraqueza(playerDefendendo[rodada], "DESVANTAGENS", elementoAtq)
 
 
             if (p1) {
                 val vidaDoPkmnP2 = calculoDano(
                     pkmnInimigoTemFrqz,
+                    pkmnInimigoTemResistencia,
                     timePlayer1,
                     timePlayer2,
                     rodada,
@@ -446,6 +455,7 @@ fun main() {
             } else {
                 val vidaDoPkmnP1 = calculoDano(
                     pkmnInimigoTemFrqz,
+                    pkmnInimigoTemResistencia,
                     timePlayer2,
                     timePlayer1,
                     rodada,
@@ -465,9 +475,11 @@ fun main() {
 
         rodada++
 
-        if (rodada < 3) {
-            vidaPkmnP1 = (timePlayer1[rodada]?.get("STATUS") as Map<*, *>)["VIDA"] as Double
-            vidaPkmnP2 = (timePlayer2[rodada]?.get("STATUS") as Map<*, *>)["VIDA"] as Double
+        if (qtdePokemonLuta.toInt() > 1) {
+            if (rodada < 3) {
+                vidaPkmnP1 = (timePlayer1[rodada]?.get("STATUS") as Map<*, *>)["VIDA"] as Double
+                vidaPkmnP2 = (timePlayer2[rodada]?.get("STATUS") as Map<*, *>)["VIDA"] as Double
+            }
         }
 
     } while (rodada < qtdePokemonLuta.toInt())
@@ -489,13 +501,13 @@ fun main() {
     } else {
         if (generoP2.toInt() == 1) {
             println(
-                "$nomeP1 $msgmVtriaM" +
-                        "\nEle venceu $vitoriasP1 combates."
+                "$nomeP2 $msgmVtriaM" +
+                        "\nEle venceu $vitoriasP2 combates."
             )
         } else {
             println(
-                "$nomeP1 $msgmVtriaF" +
-                        "\nEla venceu $vitoriasP1 combates."
+                "$nomeP2 $msgmVtriaF" +
+                        "\nEla venceu $vitoriasP2 combates."
             )
         }
     }
