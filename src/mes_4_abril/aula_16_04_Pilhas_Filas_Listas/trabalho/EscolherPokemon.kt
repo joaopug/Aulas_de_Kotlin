@@ -1,4 +1,4 @@
-package mes_4_abril.aula_16_04_Pilhas_Filas_Listas.Trabalho
+package mes_4_abril.aula_16_04_Pilhas_Filas_Listas.trabalho
 
 val bulbasaur: Map<String, Any> = mapOf(
     "NOME" to "Bulbasaur",

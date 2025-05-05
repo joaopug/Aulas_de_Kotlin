@@ -1,4 +1,4 @@
-package mes_4_abril.aula_16_04_Pilhas_Filas_Listas.Trabalho
+package mes_4_abril.aula_16_04_Pilhas_Filas_Listas.trabalho
 //
 //Aproveita a aberração "GerarAtaque" e pega o tipo do ataque também
 //

@@ -1,4 +1,4 @@
-package mes_4_abril.aula_16_04_Pilhas_Filas_Listas.Trabalho
+package mes_4_abril.aula_16_04_Pilhas_Filas_Listas.trabalho
 //
 //Função que calcula o dano que o Pokémon irá dar
 //

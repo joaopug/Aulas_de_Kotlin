@@ -1,4 +1,4 @@
-package mes_4_abril.aula_16_04_Pilhas_Filas_Listas.Trabalho
+package mes_4_abril.aula_16_04_Pilhas_Filas_Listas.trabalho
 //Aberração parte 2
 //
 //Tem como objetivo determinar se o tipo do ataque está nas fraquezas do Pokémon

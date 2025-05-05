@@ -1,4 +1,4 @@
-package mes_4_abril.aula_16_04_Pilhas_Filas_Listas.Trabalho
+package mes_4_abril.aula_16_04_Pilhas_Filas_Listas.trabalho
 
 fun pegarTipoDoAtq(pokemon: Map<String, Any>?, chave: String, ataque: Int, tipoAtq: Int): String {
 
