@@ -29,6 +29,7 @@ package mes_4_abril.aula_16_04_Pilhas_Filas_Listas.trabalho
 fun calculoDano(
     vrfcFraqueza: Boolean,
     vrfcResistencia: Boolean,
+    vrfcNulo: Boolean,
     timeAtacando: Map<Int, Map<String, Any>?>,
     timeDefendendo: Map<Int, Map<String, Any>?>,
     rodada: Int,
@@ -55,12 +56,16 @@ fun calculoDano(
 
     val dano = (((2 * nivel / 5 + 2) * forcaDoAtaque * (ataque / defesa)) / 50) + 2
 
+
     if (vrfcFraqueza) {
         danoFinal = dano * 2
         println("\nO ataque foi super efetivo!")
     } else if (vrfcResistencia) {
         danoFinal = dano * 0.5
         println("\nNão é muito efetivo...")
+    } else if (vrfcNulo) {
+        danoFinal = dano * 0.0
+        println("\nO ataque não tem efeito.")
     } else {
         danoFinal = dano
     }

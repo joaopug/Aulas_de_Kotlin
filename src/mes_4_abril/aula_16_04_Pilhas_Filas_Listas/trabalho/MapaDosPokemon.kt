@@ -11,6 +11,7 @@ val bulbasaur: Map<String, Any> = mapOf(
         "DEFESA" to 216.0,
         "ATAQUE_ESPECIAL" to 251.0,
         "DEFESA_ESPECIAL" to 251.0,
+        "VELOCIDADE" to 10.0
     ),
     "ATAQUES" to mapOf(
         1 to listOf("Chicote de Vinha", 45, "GRAMA", "FÍSICO"),
@@ -31,6 +32,7 @@ val ivysaur: Map<String, Any> = mapOf(
         "DEFESA" to 247.0,
         "ATAQUE_ESPECIAL" to 284.0,
         "DEFESA_ESPECIAL" to 284.0,
+        "VELOCIDADE" to 8.0
     ),
     "ATAQUES" to mapOf(
         1 to listOf("Bomba de Sementes", 80, "GRAMA", "ESPECIAL"),

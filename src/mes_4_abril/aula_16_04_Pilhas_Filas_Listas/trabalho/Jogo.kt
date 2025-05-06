@@ -2,7 +2,7 @@ package mes_4_abril.aula_16_04_Pilhas_Filas_Listas.trabalho
 
 val regexCadastro = Regex("[1-2]")
 
-val regexNome = Regex("^[a-zA-Z0-9]+$")
+val regexNome = Regex("^[a-zA-ZÀ-ÿ ]+$")
 
 val regexNroPokemon = Regex("[1-3]")
 
@@ -15,6 +15,7 @@ val regexDecisaoSN = Regex("^[SN]$")
 fun main() {
     var duracaoDelay: Long = 2000
     var duracaoDelay2: Long = 6000
+    var duracaoDelay3: Long = 1000
     var nomeP1 = "Red"
     var nomeP2 = "Blue"
     var generoP1 = "Menino"
@@ -90,7 +91,7 @@ fun main() {
         println("Como você quer ser chamado?")
         do {
             nomeP1 = readln()
-            if(!regexNome.matches(nomeP1)){
+            if (!regexNome.matches(nomeP1)) {
                 println("Digite algo.")
             }
         } while (!regexNome.matches(nomeP1))
@@ -203,11 +204,11 @@ fun main() {
 
             generoP2 = readln()
 
-            if (!regexCadastro.matches(generoP1)) {
+            if (!regexCadastro.matches(generoP2)) {
                 println("Caractere inválido")
             }
 
-        } while (!regexCadastro.matches(generoP1))
+        } while (!regexCadastro.matches(generoP2))
     }
 
     println(
@@ -315,13 +316,13 @@ fun main() {
         p1 = false
 
     } while (timePlayer2.isEmpty())
-    //Thread.sleep(2000)
 
     p1 = true
     var nomePlyr: String
     var timePlyr: Map<Int, Map<String, Any>?>
 
     for (i in 1..2) {
+        Thread.sleep(duracaoDelay)
         if (p1) {
             nomePlyr = nomeP1
             timePlyr = timePlayer1
@@ -339,19 +340,28 @@ fun main() {
 
         p1 = false
     }
+    Thread.sleep(duracaoDelay)
 
     var rodada = 0
 
     var vitoriasP1 = 0
     var vitoriasP2 = 0
 
-    p1 = true
     var vidaPkmnP1 = (timePlayer1[rodada]?.get("STATUS") as Map<*, *>)["VIDA"] as Double
     var vidaPkmnP2 = (timePlayer2[rodada]?.get("STATUS") as Map<*, *>)["VIDA"] as Double
 
+    var velocidadePkmnP1 = (timePlayer1[rodada]?.get("STATUS") as Map<*, *>)["VELOCIDADE"] as Double
+    var velocidadePkmnP2 = (timePlayer2[rodada]?.get("STATUS") as Map<*, *>)["VELOCIDADE"] as Double
+
 
     do {
-        println("Rodada ${rodada + 1}: iniciar!")
+        println("\nRodada ${rodada + 1}: iniciar!")
+        Thread.sleep(duracaoDelay)
+        p1 = if (velocidadePkmnP2 > velocidadePkmnP1) {
+            false
+        } else {
+            true
+        }
         do {
             var playerAtacando: Map<Int, Map<String, Any>?>
             var playerDefendendo: Map<Int, Map<String, Any>?>
@@ -386,8 +396,14 @@ fun main() {
             val atqsPokemon = playerAtacando[rodada]?.get("ATAQUES") as? Map<*, *>
 
             print(
-                "\nÉ vez de: $nomePlayerAtacando" +
-                        "\nQual ataque $nomePokemonAtacando usará, $nomePlayerAtacando?" +
+                "\nO $nomePokemonAtacando de $nomePlayerAtacando é mais veloz!" +
+                        "\n$nomePokemonAtacando começa atacando."
+            )
+
+            Thread.sleep(duracaoDelay)
+
+            println(
+                "\nQual ataque $nomePokemonAtacando usará, $nomePlayerAtacando?" +
                         "\nVida do seu $nomePokemonAtacando: $vidaPokemonAtacando" +
                         "\n\nVida do $nomePokemonDefendendo de $nomePlayerDefendendo: $vidaPokemonDefendendo\n\n"
             )
@@ -398,6 +414,8 @@ fun main() {
                 val forcaAtaque = atributo?.get(1)
                 val elementoAtaque = atributo?.get(2)
                 val tipoAtaque = atributo?.get(3)
+
+                Thread.sleep(duracaoDelay3)
 
                 println(
                     "Ataque ${index + 1}" +
@@ -429,15 +447,18 @@ fun main() {
 
             val tipoAtq = pegarTipoDoAtq(playerAtacando[rodada], "ATAQUES", escolhaAtq.toInt(), 3)
 
+            val pkmnInimigoTemNulidade = verSeTemNulidade(playerDefendendo[rodada], "TIPOS", elementoAtq)
+
             val pkmnInimigoTemFrqz = verSeTemFraqueza(playerDefendendo[rodada], "DESVANTAGENS", elementoAtq)
 
-            val pkmnInimigoTemResistencia = verSeTemFraqueza(playerDefendendo[rodada], "DESVANTAGENS", elementoAtq)
+            val pkmnInimigoTemResistencia = verSeTemResistencia(playerDefendendo[rodada], "RESISTÊNCIAS", elementoAtq)
 
 
             if (p1) {
                 val vidaDoPkmnP2 = calculoDano(
                     pkmnInimigoTemFrqz,
                     pkmnInimigoTemResistencia,
+                    pkmnInimigoTemNulidade,
                     timePlayer1,
                     timePlayer2,
                     rodada,
@@ -456,6 +477,7 @@ fun main() {
                 val vidaDoPkmnP1 = calculoDano(
                     pkmnInimigoTemFrqz,
                     pkmnInimigoTemResistencia,
+                    pkmnInimigoTemNulidade,
                     timePlayer2,
                     timePlayer1,
                     rodada,
@@ -479,6 +501,8 @@ fun main() {
             if (rodada < 3) {
                 vidaPkmnP1 = (timePlayer1[rodada]?.get("STATUS") as Map<*, *>)["VIDA"] as Double
                 vidaPkmnP2 = (timePlayer2[rodada]?.get("STATUS") as Map<*, *>)["VIDA"] as Double
+                velocidadePkmnP1 = (timePlayer1[rodada]?.get("STATUS") as Map<*, *>)["VELOCIDADE"] as Double
+                velocidadePkmnP2 = (timePlayer2[rodada]?.get("STATUS") as Map<*, *>)["VELOCIDADE"] as Double
             }
         }
 

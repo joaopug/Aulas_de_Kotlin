@@ -1,4 +1,5 @@
 package mes_4_abril.aula_16_04_Pilhas_Filas_Listas.trabalho
+
 //Aberração parte 2
 //
 //Tem como objetivo determinar se o tipo do ataque está nas fraquezas do Pokémon
@@ -24,7 +25,15 @@ fun verSeTemResistencia(pokemon: Map<String, Any>?, chave: String, tipoAtq: Stri
 
     val resistenciasPkmn = pokemon?.get(chave) as? List<*>
 
-    val tipo = resistenciasPkmn?.contains(tipoAtq) == true
+    val temResistenciaOuNao = resistenciasPkmn?.contains(tipoAtq) == true
 
-    return tipo
+    return temResistenciaOuNao
+}
+
+fun verSeTemNulidade(pokemon: Map<String, Any>?, chave: String, tipoDoAtq: String): Boolean {
+    val elementosPkmn = pokemon?.get(chave) as List<*>
+    return (elementosPkmn.contains("FANTASMA") && tipoDoAtq == "NORMAL") ||
+            (elementosPkmn.contains("NORMAL") && tipoDoAtq == "FANTASMA") ||
+            (elementosPkmn.contains("VOADOR") && tipoDoAtq == "TERRESTRE") ||
+            (elementosPkmn.contains("FANTASMA") && tipoDoAtq == "LUTADOR")
 }
