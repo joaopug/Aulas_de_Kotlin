@@ -1,4 +1,5 @@
 package mes_4_abril.aula_16_04_Pilhas_Filas_Listas.trabalho
+
 //Aberração parte 2
 //
 //Tem como objetivo determinar se o tipo do ataque está nas fraquezas do Pokémon
@@ -11,11 +12,28 @@ package mes_4_abril.aula_16_04_Pilhas_Filas_Listas.trabalho
 //   há o elemento do ataque sendo usado ->
 //-> Se tiver o elemento, retorna "true", senão retorna "false"
 //
-fun compararTipoDoAtq(pokemon: Map<String, Any>?, chave: String, tipoAtq: String): Boolean {
+fun verSeTemFraqueza(pokemon: Map<String, Any>?, chave: String, tipoAtq: String): Boolean {
 
     val fraquezasPkmn = pokemon?.get(chave) as? List<*>
 
     val tipo = fraquezasPkmn?.contains(tipoAtq) == true
 
     return tipo
+}
+
+fun verSeTemResistencia(pokemon: Map<String, Any>?, chave: String, tipoAtq: String): Boolean {
+
+    val resistenciasPkmn = pokemon?.get(chave) as? List<*>
+
+    val temResistenciaOuNao = resistenciasPkmn?.contains(tipoAtq) == true
+
+    return temResistenciaOuNao
+}
+
+fun verSeTemNulidade(pokemon: Map<String, Any>?, chave: String, tipoDoAtq: String): Boolean {
+    val elementosPkmn = pokemon?.get(chave) as List<*>
+    return (elementosPkmn.contains("FANTASMA") && tipoDoAtq == "NORMAL") ||
+            (elementosPkmn.contains("NORMAL") && tipoDoAtq == "FANTASMA") ||
+            (elementosPkmn.contains("VOADOR") && tipoDoAtq == "TERRESTRE") ||
+            (elementosPkmn.contains("FANTASMA") && tipoDoAtq == "LUTADOR")
 }

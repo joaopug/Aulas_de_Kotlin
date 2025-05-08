@@ -2,7 +2,9 @@ package mes_4_abril.aula_16_04_Pilhas_Filas_Listas.trabalho
 
 val regexCadastro = Regex("[1-2]")
 
-val regexNroPokemon = Regex("[1-3]")
+val regexNome = Regex("^[a-zA-ZÀ-ÿ ]+$")
+
+val regexNroPokemon = Regex("^[13]$")
 
 val regexEscolhaAtq = Regex("[1-4]")
 
@@ -11,8 +13,13 @@ val regexEscolhaPokemon = Regex("^(?:[1-9]|[1-9][0-9]|1[0-4][0-9]|150|151)$")
 val regexDecisaoSN = Regex("^[SN]$")
 
 fun main() {
+    jogo()
+}
+
+fun jogo() {
     var duracaoDelay: Long = 2000
     var duracaoDelay2: Long = 6000
+    var duracaoDelay3: Long = 1000
     var nomeP1 = "Red"
     var nomeP2 = "Blue"
     var generoP1 = "Menino"
@@ -49,7 +56,7 @@ fun main() {
 
             semDelay = readln().uppercase()
 
-            if (!regexCadastro.matches(semDelay)) {
+            if (!regexDecisaoSN.matches(semDelay)) {
                 println("Caractere inválido")
             }
 
@@ -86,7 +93,12 @@ fun main() {
         Thread.sleep(duracaoDelay)
 
         println("Como você quer ser chamado?")
-        nomeP1 = readln()
+        do {
+            nomeP1 = readln()
+            if (!regexNome.matches(nomeP1)) {
+                println("Digite algo.")
+            }
+        } while (!regexNome.matches(nomeP1))
 
         Thread.sleep(duracaoDelay)
 
@@ -107,7 +119,7 @@ fun main() {
 
             generoP2 = readln().uppercase()
 
-            if (!regexCadastro.matches(generoP2)) {
+            if (!regexDecisaoSN.matches(generoP2)) {
                 println("Caractere inválido")
             }
 
@@ -194,13 +206,13 @@ fun main() {
         )
         do {
 
-            generoP1 = readln()
+            generoP2 = readln()
 
-            if (!regexCadastro.matches(generoP1)) {
+            if (!regexCadastro.matches(generoP2)) {
                 println("Caractere inválido")
             }
 
-        } while (!regexCadastro.matches(generoP1))
+        } while (!regexCadastro.matches(generoP2))
     }
 
     println(
@@ -217,7 +229,6 @@ fun main() {
             "\nQuantos Pokémon batalharão?" +
                     "\nEscolha:" +
                     "\n1 - Um" +
-                    "\n2 - Dois" +
                     "\n3 - Três"
         )
 
@@ -228,11 +239,6 @@ fun main() {
                 1 -> {
                     Thread.sleep(duracaoDelay)
                     println("\nUm Pokémon será então.\n")
-                }
-
-                2 -> {
-                    Thread.sleep(duracaoDelay)
-                    println("\nDois Pokémon será então.\n")
                 }
 
                 3 -> {
@@ -251,43 +257,58 @@ fun main() {
     val timePlayer1: MutableMap<Int, Map<String, Any>?> = mutableMapOf()
     val timePlayer2: MutableMap<Int, Map<String, Any>?> = mutableMapOf()
     var p1 = true
+
+    println(
+        "\nVocês irão querer que a escolha de Pokémon seja aleatória?" +
+                "\nS - Sim || N - Não"
+    )
+    var batalhaAleatoria: String
+    do {
+        batalhaAleatoria = readln().uppercase()
+
+        if (!regexDecisaoSN.matches(batalhaAleatoria)) {
+            println("Caractere inválido")
+        }
+    } while (!regexDecisaoSN.matches(batalhaAleatoria))
+
     do {
 
         var repeticao = 0
 
-        if (p1) {
-            println(
-                "\nQuais dos 151 Pokémon vai querer usar, $nomeP1?" +
-                        "\nSelecione:"
-            )
-        } else {
-            println(
-                "\nQuais dos 151 Pokémon vai querer usar, $nomeP2?" +
-                        "\nSelecione:"
-            )
+        if (batalhaAleatoria == "N") {
+            if (p1) {
+                println(
+                    "\nQuais dos 151 Pokémon vai querer usar, $nomeP1?" +
+                            "\nSelecione:"
+                )
+            } else {
+                println(
+                    "\nQuais dos 151 Pokémon vai querer usar, $nomeP2?" +
+                            "\nSelecione:"
+                )
+            }
+
+            Thread.sleep(duracaoDelay2)
+
+            mostrarPokemon(mapaTodosPokemon)
         }
-
-        Thread.sleep(duracaoDelay2)
-
-        mostrarPokemon(mapaTodosPokemon)
-
+        var pokemonEscolhido: Map<String, Any>?
         do {
-            var escolha: String
+            if (batalhaAleatoria == "N") {
+                var escolha: String
 
-            do {
-
-                escolha = readln()
-
-                if (!regexEscolhaPokemon.matches(escolha)) {
-                    println(
-                        "\nPokémon indisponível ou caractere inválido" +
-                                "\nTente novamente."
-                    )
-                }
-
-            } while (!regexEscolhaPokemon.matches(escolha))
-
-            val pokemonEscolhido = mapaTodosPokemon[escolha.toInt()]
+                do {
+                    escolha = readln()
+                    if (!regexEscolhaPokemon.matches(escolha)) {
+                        println("\nPokémon indisponível ou caractere inválido\nTente novamente.")
+                    }
+                } while (!regexEscolhaPokemon.matches(escolha))
+                pokemonEscolhido = mapaTodosPokemon[escolha.toInt()]
+            } else {
+                println("\nEscolhendo ${repeticao + 1}º Pokémon...")
+                pokemonEscolhido = mapaTodosPokemon[(1..151).random()]
+                Thread.sleep(duracaoDelay2)
+            }
 
             if (p1) {
 
@@ -299,22 +320,21 @@ fun main() {
 
             }
 
-            println("${pokemonEscolhido?.get("NOME")} escolhido.")
+            println("\n${pokemonEscolhido?.get("NOME")} escolhido.")
 
             repeticao++
 
         } while (repeticao != qtdePokemonLuta.toInt())
 
         p1 = false
-
     } while (timePlayer2.isEmpty())
-    //Thread.sleep(2000)
 
     p1 = true
     var nomePlyr: String
     var timePlyr: Map<Int, Map<String, Any>?>
 
     for (i in 1..2) {
+        Thread.sleep(duracaoDelay)
         if (p1) {
             nomePlyr = nomeP1
             timePlyr = timePlayer1
@@ -332,18 +352,29 @@ fun main() {
 
         p1 = false
     }
+    Thread.sleep(duracaoDelay)
 
     var rodada = 0
 
     var vitoriasP1 = 0
     var vitoriasP2 = 0
 
-    p1 = true
     var vidaPkmnP1 = (timePlayer1[rodada]?.get("STATUS") as Map<*, *>)["VIDA"] as Double
     var vidaPkmnP2 = (timePlayer2[rodada]?.get("STATUS") as Map<*, *>)["VIDA"] as Double
 
+    var velocidadePkmnP1 = (timePlayer1[rodada]?.get("STATUS") as Map<*, *>)["VELOCIDADE"] as Double
+    var velocidadePkmnP2 = (timePlayer2[rodada]?.get("STATUS") as Map<*, *>)["VELOCIDADE"] as Double
+
 
     do {
+        var turno = 0
+        println("\nRodada ${rodada + 1}: iniciar!")
+        Thread.sleep(duracaoDelay)
+        p1 = if (velocidadePkmnP2 > velocidadePkmnP1) {
+            false
+        } else {
+            true
+        }
         do {
             var playerAtacando: Map<Int, Map<String, Any>?>
             var playerDefendendo: Map<Int, Map<String, Any>?>
@@ -354,8 +385,6 @@ fun main() {
             var vidaPokemonAtacando: Double
             var vidaPokemonDefendendo: Double
 
-            println("Rodada ${rodada + 1}: iniciar!")
-
 
             if (p1) {
                 playerAtacando = timePlayer1
@@ -364,8 +393,8 @@ fun main() {
                 nomePlayerDefendendo = nomeP2
                 vidaPokemonAtacando = vidaPkmnP1
                 vidaPokemonDefendendo = vidaPkmnP2
-                nomePokemonAtacando = timePlayer1[rodada]?.get("NOME") as String
-                nomePokemonDefendendo = timePlayer2[rodada]?.get("NOME") as String
+                nomePokemonAtacando = playerAtacando[rodada]?.get("NOME") as String
+                nomePokemonDefendendo = playerDefendendo[rodada]?.get("NOME") as String
             } else {
                 playerAtacando = timePlayer2
                 playerDefendendo = timePlayer1
@@ -373,17 +402,29 @@ fun main() {
                 nomePlayerDefendendo = nomeP1
                 vidaPokemonAtacando = vidaPkmnP2
                 vidaPokemonDefendendo = vidaPkmnP1
-                nomePokemonAtacando = timePlayer2[rodada]?.get("NOME") as String
-                nomePokemonDefendendo = timePlayer1[rodada]?.get("NOME") as String
+                nomePokemonAtacando = playerAtacando[rodada]?.get("NOME") as String
+                nomePokemonDefendendo = playerDefendendo[rodada]?.get("NOME") as String
             }
 
             val atqsPokemon = playerAtacando[rodada]?.get("ATAQUES") as? Map<*, *>
 
-            print(
-                "\nÉ vez de: $nomePlayerAtacando" +
-                        "\nQual ataque $nomePokemonAtacando usará, $nomePlayerAtacando?" +
-                        "\nVida do seu $nomePokemonAtacando: $vidaPokemonAtacando" +
-                        "\n\nVida do $nomePokemonDefendendo de $nomePlayerDefendendo: $vidaPokemonDefendendo\n\n"
+            if (turno == 0) {
+                print(
+                    "\nO $nomePokemonAtacando de $nomePlayerAtacando é mais veloz!" +
+                            "\n$nomePokemonAtacando começa atacando."
+                )
+            } else {
+                print(
+                    "\nÉ a vez do $nomePokemonAtacando de $nomePlayerAtacando!"
+                )
+            }
+
+            Thread.sleep(duracaoDelay)
+
+            println(
+                "\nQual ataque $nomePokemonAtacando usará, $nomePlayerAtacando?" +
+                        "\nVida do seu $nomePokemonAtacando: ${vidaPokemonAtacando.toInt()}" +
+                        "\n\nVida do $nomePokemonDefendendo de $nomePlayerDefendendo: ${vidaPokemonDefendendo.toInt()}\n"
             )
 
             atqsPokemon?.values?.withIndex()?.forEach { (index, ataque) ->
@@ -392,6 +433,8 @@ fun main() {
                 val forcaAtaque = atributo?.get(1)
                 val elementoAtaque = atributo?.get(2)
                 val tipoAtaque = atributo?.get(3)
+
+                Thread.sleep(duracaoDelay3)
 
                 println(
                     "Ataque ${index + 1}" +
@@ -423,12 +466,19 @@ fun main() {
 
             val tipoAtq = pegarTipoDoAtq(playerAtacando[rodada], "ATAQUES", escolhaAtq.toInt(), 3)
 
-            val pkmnInimigoTemFrqz = compararTipoDoAtq(playerDefendendo[rodada], "DESVANTAGENS", elementoAtq)
+            val pkmnInimigoTemNulidade = verSeTemNulidade(playerDefendendo[rodada], "TIPOS", elementoAtq)
+
+            val pkmnInimigoTemFrqz = verSeTemFraqueza(playerDefendendo[rodada], "DESVANTAGENS", elementoAtq)
+
+            val pkmnInimigoTemResistencia =
+                verSeTemResistencia(playerDefendendo[rodada], "RESISTÊNCIAS", elementoAtq)
 
 
             if (p1) {
                 val vidaDoPkmnP2 = calculoDano(
                     pkmnInimigoTemFrqz,
+                    pkmnInimigoTemResistencia,
+                    pkmnInimigoTemNulidade,
                     timePlayer1,
                     timePlayer2,
                     rodada,
@@ -446,6 +496,8 @@ fun main() {
             } else {
                 val vidaDoPkmnP1 = calculoDano(
                     pkmnInimigoTemFrqz,
+                    pkmnInimigoTemResistencia,
+                    pkmnInimigoTemNulidade,
                     timePlayer2,
                     timePlayer1,
                     rodada,
@@ -461,13 +513,18 @@ fun main() {
                 }
                 p1 = true
             }
+            turno++
         } while (vidaPkmnP1 > 0.0 && vidaPkmnP2 > 0.0)
 
         rodada++
 
-        if (rodada < 3) {
-            vidaPkmnP1 = (timePlayer1[rodada]?.get("STATUS") as Map<*, *>)["VIDA"] as Double
-            vidaPkmnP2 = (timePlayer2[rodada]?.get("STATUS") as Map<*, *>)["VIDA"] as Double
+        if (qtdePokemonLuta.toInt() > 1) {
+            if (rodada < 3) {
+                vidaPkmnP1 = (timePlayer1[rodada]?.get("STATUS") as Map<*, *>)["VIDA"] as Double
+                vidaPkmnP2 = (timePlayer2[rodada]?.get("STATUS") as Map<*, *>)["VIDA"] as Double
+                velocidadePkmnP1 = (timePlayer1[rodada]?.get("STATUS") as Map<*, *>)["VELOCIDADE"] as Double
+                velocidadePkmnP2 = (timePlayer2[rodada]?.get("STATUS") as Map<*, *>)["VELOCIDADE"] as Double
+            }
         }
 
     } while (rodada < qtdePokemonLuta.toInt())
@@ -489,13 +546,13 @@ fun main() {
     } else {
         if (generoP2.toInt() == 1) {
             println(
-                "$nomeP1 $msgmVtriaM" +
-                        "\nEle venceu $vitoriasP1 combates."
+                "$nomeP2 $msgmVtriaM" +
+                        "\nEle venceu $vitoriasP2 combates."
             )
         } else {
             println(
-                "$nomeP1 $msgmVtriaF" +
-                        "\nEla venceu $vitoriasP1 combates."
+                "$nomeP2 $msgmVtriaF" +
+                        "\nEla venceu $vitoriasP2 combates."
             )
         }
     }
