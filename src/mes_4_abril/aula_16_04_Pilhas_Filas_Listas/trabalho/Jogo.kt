@@ -4,7 +4,7 @@ val regexCadastro = Regex("[1-2]")
 
 val regexNome = Regex("^[a-zA-ZÀ-ÿ ]+$")
 
-val regexNroPokemon = Regex("[1-3]")
+val regexNroPokemon = Regex("^[13]$")
 
 val regexEscolhaAtq = Regex("[1-4]")
 
@@ -13,6 +13,10 @@ val regexEscolhaPokemon = Regex("^(?:[1-9]|[1-9][0-9]|1[0-4][0-9]|150|151)$")
 val regexDecisaoSN = Regex("^[SN]$")
 
 fun main() {
+    jogo()
+}
+
+fun jogo() {
     var duracaoDelay: Long = 2000
     var duracaoDelay2: Long = 6000
     var duracaoDelay3: Long = 1000
@@ -225,7 +229,6 @@ fun main() {
             "\nQuantos Pokémon batalharão?" +
                     "\nEscolha:" +
                     "\n1 - Um" +
-                    "\n2 - Dois" +
                     "\n3 - Três"
         )
 
@@ -236,11 +239,6 @@ fun main() {
                 1 -> {
                     Thread.sleep(duracaoDelay)
                     println("\nUm Pokémon será então.\n")
-                }
-
-                2 -> {
-                    Thread.sleep(duracaoDelay)
-                    println("\nDois Pokémon será então.\n")
                 }
 
                 3 -> {
@@ -259,43 +257,58 @@ fun main() {
     val timePlayer1: MutableMap<Int, Map<String, Any>?> = mutableMapOf()
     val timePlayer2: MutableMap<Int, Map<String, Any>?> = mutableMapOf()
     var p1 = true
+
+    println(
+        "\nVocês irão querer que a escolha de Pokémon seja aleatória?" +
+                "\nS - Sim || N - Não"
+    )
+    var batalhaAleatoria: String
+    do {
+        batalhaAleatoria = readln().uppercase()
+
+        if (!regexDecisaoSN.matches(batalhaAleatoria)) {
+            println("Caractere inválido")
+        }
+    } while (!regexDecisaoSN.matches(batalhaAleatoria))
+
     do {
 
         var repeticao = 0
 
-        if (p1) {
-            println(
-                "\nQuais dos 151 Pokémon vai querer usar, $nomeP1?" +
-                        "\nSelecione:"
-            )
-        } else {
-            println(
-                "\nQuais dos 151 Pokémon vai querer usar, $nomeP2?" +
-                        "\nSelecione:"
-            )
+        if (batalhaAleatoria == "N") {
+            if (p1) {
+                println(
+                    "\nQuais dos 151 Pokémon vai querer usar, $nomeP1?" +
+                            "\nSelecione:"
+                )
+            } else {
+                println(
+                    "\nQuais dos 151 Pokémon vai querer usar, $nomeP2?" +
+                            "\nSelecione:"
+                )
+            }
+
+            Thread.sleep(duracaoDelay2)
+
+            mostrarPokemon(mapaTodosPokemon)
         }
-
-        Thread.sleep(duracaoDelay2)
-
-        mostrarPokemon(mapaTodosPokemon)
-
+        var pokemonEscolhido: Map<String, Any>?
         do {
-            var escolha: String
+            if (batalhaAleatoria == "N") {
+                var escolha: String
 
-            do {
-
-                escolha = readln()
-
-                if (!regexEscolhaPokemon.matches(escolha)) {
-                    println(
-                        "\nPokémon indisponível ou caractere inválido" +
-                                "\nTente novamente."
-                    )
-                }
-
-            } while (!regexEscolhaPokemon.matches(escolha))
-
-            val pokemonEscolhido = mapaTodosPokemon[escolha.toInt()]
+                do {
+                    escolha = readln()
+                    if (!regexEscolhaPokemon.matches(escolha)) {
+                        println("\nPokémon indisponível ou caractere inválido\nTente novamente.")
+                    }
+                } while (!regexEscolhaPokemon.matches(escolha))
+                pokemonEscolhido = mapaTodosPokemon[escolha.toInt()]
+            } else {
+                println("\nEscolhendo ${repeticao + 1}º Pokémon...")
+                pokemonEscolhido = mapaTodosPokemon[(1..151).random()]
+                Thread.sleep(duracaoDelay2)
+            }
 
             if (p1) {
 
@@ -307,14 +320,13 @@ fun main() {
 
             }
 
-            println("${pokemonEscolhido?.get("NOME")} escolhido.")
+            println("\n${pokemonEscolhido?.get("NOME")} escolhido.")
 
             repeticao++
 
         } while (repeticao != qtdePokemonLuta.toInt())
 
         p1 = false
-
     } while (timePlayer2.isEmpty())
 
     p1 = true
@@ -355,6 +367,7 @@ fun main() {
 
 
     do {
+        var turno = 0
         println("\nRodada ${rodada + 1}: iniciar!")
         Thread.sleep(duracaoDelay)
         p1 = if (velocidadePkmnP2 > velocidadePkmnP1) {
@@ -395,17 +408,23 @@ fun main() {
 
             val atqsPokemon = playerAtacando[rodada]?.get("ATAQUES") as? Map<*, *>
 
-            print(
-                "\nO $nomePokemonAtacando de $nomePlayerAtacando é mais veloz!" +
-                        "\n$nomePokemonAtacando começa atacando."
-            )
+            if (turno == 0) {
+                print(
+                    "\nO $nomePokemonAtacando de $nomePlayerAtacando é mais veloz!" +
+                            "\n$nomePokemonAtacando começa atacando."
+                )
+            } else {
+                print(
+                    "\nÉ a vez do $nomePokemonAtacando de $nomePlayerAtacando!"
+                )
+            }
 
             Thread.sleep(duracaoDelay)
 
             println(
                 "\nQual ataque $nomePokemonAtacando usará, $nomePlayerAtacando?" +
-                        "\nVida do seu $nomePokemonAtacando: $vidaPokemonAtacando" +
-                        "\n\nVida do $nomePokemonDefendendo de $nomePlayerDefendendo: $vidaPokemonDefendendo\n\n"
+                        "\nVida do seu $nomePokemonAtacando: ${vidaPokemonAtacando.toInt()}" +
+                        "\n\nVida do $nomePokemonDefendendo de $nomePlayerDefendendo: ${vidaPokemonDefendendo.toInt()}\n"
             )
 
             atqsPokemon?.values?.withIndex()?.forEach { (index, ataque) ->
@@ -451,7 +470,8 @@ fun main() {
 
             val pkmnInimigoTemFrqz = verSeTemFraqueza(playerDefendendo[rodada], "DESVANTAGENS", elementoAtq)
 
-            val pkmnInimigoTemResistencia = verSeTemResistencia(playerDefendendo[rodada], "RESISTÊNCIAS", elementoAtq)
+            val pkmnInimigoTemResistencia =
+                verSeTemResistencia(playerDefendendo[rodada], "RESISTÊNCIAS", elementoAtq)
 
 
             if (p1) {
@@ -493,6 +513,7 @@ fun main() {
                 }
                 p1 = true
             }
+            turno++
         } while (vidaPkmnP1 > 0.0 && vidaPkmnP2 > 0.0)
 
         rodada++
