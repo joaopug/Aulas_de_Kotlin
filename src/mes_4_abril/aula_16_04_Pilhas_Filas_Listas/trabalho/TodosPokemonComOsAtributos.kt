@@ -953,7 +953,7 @@ val paras: Map<String, Any> = mapOf(
         1 to listOf("Corte", 70, "NORMAL", "FÍSICO"),
         2 to listOf("Bomba de Semente", 80, "GRAMA", "FÍSICO"),
         3 to listOf("Chupar Sangue", 80, "INSETO", "FÍSICO"),
-        4 to listOf("Esporo", 0, "GRAMA", "STATUS")
+        4 to listOf("Bola de Energia", 90, "GRAMA", "ESPECIAL")
     )
 )
 
@@ -974,7 +974,7 @@ val parasect: Map<String, Any> = mapOf(
         1 to listOf("Corte", 70, "NORMAL", "FÍSICO"),
         2 to listOf("Bomba de Semente", 80, "GRAMA", "FÍSICO"),
         3 to listOf("Chupar Sangue", 80, "INSETO", "FÍSICO"),
-        4 to listOf("Esporo", 0, "GRAMA", "STATUS")
+        4 to listOf("Bola de Energia", 90, "GRAMA", "ESPECIAL")
     )
 )
 
@@ -994,7 +994,7 @@ val venonat: Map<String, Any> = mapOf(
     "ATAQUES" to mapOf(
         1 to listOf("Zumbido", 90, "INSETO", "ESPECIAL"),
         2 to listOf("Ácido", 40, "VENENO", "ESPECIAL"),
-        3 to listOf("Pó Venenoso", 0, "VENENO", "STATUS"),
+        3 to listOf("Bomba de Lodo", 90, "VENENO", "ESPECIAL"),
         4 to listOf("Investida", 35, "NORMAL", "FÍSICO")
     )
 )
@@ -1015,7 +1015,7 @@ val venomoth: Map<String, Any> = mapOf(
     "ATAQUES" to mapOf(
         1 to listOf("Zumbido", 90, "INSETO", "ESPECIAL"),
         2 to listOf("Ácido", 40, "VENENO", "ESPECIAL"),
-        3 to listOf("Pó Venenoso", 0, "VENENO", "STATUS"),
+        3 to listOf("Bomba de Lodo", 90, "VENENO", "ESPECIAL"),
         4 to listOf("Rajada Psíquica", 65, "PSÍQUICO", "ESPECIAL")
     )
 )
@@ -1309,7 +1309,8 @@ val abra: Map<String, Any> = mapOf(
     "ATAQUES" to mapOf(
         1 to listOf("Confusão", 50, "PSÍQUICO", "ESPECIAL"),
         2 to listOf("Psíquico", 90, "PSÍQUICO", "ESPECIAL"),
-        3 to listOf("Teleporte", 0, "PSÍQUICO", "STATUS")
+        3 to listOf("Soco Trovoada", 75, "ELÉTRICO", "FÍSICO"),
+        4 to listOf("Bola Sombria",80,"FANTASMA","ESPECIAL")
     )
 )
 
@@ -1330,7 +1331,7 @@ val kadabra: Map<String, Any> = mapOf(
         1 to listOf("Confusão", 50, "PSÍQUICO", "ESPECIAL"),
         2 to listOf("Psíquico", 90, "PSÍQUICO", "ESPECIAL"),
         3 to listOf("Raio de Sinal", 75, "INSETO", "ESPECIAL"),
-        4 to listOf("Teleporte", 0, "PSÍQUICO", "STATUS")
+        4 to listOf("Visão do Futuro", 120, "PSÍQUICO", "ESPECIAL")
     )
 )
 
@@ -1435,7 +1436,7 @@ val bellsprout: Map<String, Any> = mapOf(
         1 to listOf("Folha Navalha", 55, "GRAMA", "FÍSICO"),
         2 to listOf("Ácido", 40, "VENENO", "ESPECIAL"),
         3 to listOf("Chicote de Vinha", 45, "GRAMA", "FÍSICO"),
-        4 to listOf("Pó Venenoso", 0, "VENENO", "STATUS")
+        4 to listOf("Chicote Poderoso", 120, "GRAMA", "FÍSICO")
     )
 )
 
@@ -1456,7 +1457,7 @@ val weepinbell: Map<String, Any> = mapOf(
         1 to listOf("Folha Navalha", 55, "GRAMA", "FÍSICO"),
         2 to listOf("Ácido", 40, "VENENO", "ESPECIAL"),
         3 to listOf("Chicote de Vinha", 45, "GRAMA", "FÍSICO"),
-        4 to listOf("Pó Venenoso", 0, "VENENO", "STATUS")
+        4 to listOf("Chicote Poderoso", 120, "GRAMA", "FÍSICO")
     )
 )
 
@@ -2273,7 +2274,7 @@ val koffing: Map<String, Any> = mapOf(
     "ATAQUES" to mapOf(
         1 to listOf("Ácido", 40, "VENENO", "ESPECIAL"),
         2 to listOf("Bomba de Lama", 90, "VENENO", "ESPECIAL"),
-        3 to listOf("Pó Venenoso", 0, "VENENO", "STATUS"),
+        3 to listOf("Venochoque", 65, "VENENO", "ESPECIAL"),
         4 to listOf("Autodestruição", 200, "NORMAL", "FÍSICO")
     )
 )
@@ -2294,7 +2295,7 @@ val weezing: Map<String, Any> = mapOf(
     "ATAQUES" to mapOf(
         1 to listOf("Ácido", 40, "VENENO", "ESPECIAL"),
         2 to listOf("Bomba de Lama", 90, "VENENO", "ESPECIAL"),
-        3 to listOf("Pó Venenoso", 0, "VENENO", "STATUS"),
+        3 to listOf("Venochoque", 65, "VENENO", "ESPECIAL"),
         4 to listOf("Autodestruição", 200, "NORMAL", "FÍSICO")
     )
 )
@@ -2358,7 +2359,7 @@ val chansey: Map<String, Any> = mapOf(
         1 to listOf("Tapinha Duplo", 15, "FADA", "FÍSICO"),
         2 to listOf("Soco Dinâmico", 100, "LUTADOR", "FÍSICO"),
         3 to listOf("Hiper Voz", 90, "NORMAL", "ESPECIAL"),
-        4 to listOf("Cura", 0, "NORMAL", "STATUS")
+        4 to listOf("Desmantelar", 90, "NORMAL", "FÍSICO")
     )
 )
 
