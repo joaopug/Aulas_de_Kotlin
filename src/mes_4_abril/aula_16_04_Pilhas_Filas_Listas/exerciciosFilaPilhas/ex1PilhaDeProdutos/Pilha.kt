@@ -1,4 +1,4 @@
-package mes_4_abril.aula_16_04_Pilhas_Filas_Listas.exercicios.ex1PilhaDeProdutos
+package mes_4_abril.aula_16_04_Pilhas_Filas_Listas.exerciciosFilaPilhas.ex1PilhaDeProdutos
 
 import java.util.*
 

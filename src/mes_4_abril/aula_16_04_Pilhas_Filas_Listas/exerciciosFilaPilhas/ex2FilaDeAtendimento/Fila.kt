@@ -1,4 +1,4 @@
-package mes_4_abril.aula_16_04_Pilhas_Filas_Listas.exercicios.ex2FilaDeAtendimento
+package mes_4_abril.aula_16_04_Pilhas_Filas_Listas.exerciciosFilaPilhas.ex2FilaDeAtendimento
 
 import java.util.LinkedList
 

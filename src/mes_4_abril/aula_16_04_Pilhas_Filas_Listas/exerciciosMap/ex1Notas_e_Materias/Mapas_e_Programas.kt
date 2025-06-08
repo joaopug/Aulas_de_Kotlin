@@ -1,10 +1,10 @@
-package mes_4_abril.aula_16_04_Pilhas_Filas_Listas.exercicios.ex3Notas_e_Materias
+package mes_4_abril.aula_16_04_Pilhas_Filas_Listas.exerciciosMap.ex1Notas_e_Materias
 
 fun main() {
-    jorge()
+    programa()
 }
 
-fun jorge() {
+fun programa() {
     val ciencias = mapOf(
         6.0 to "Jorge",
         8.2 to "João",
