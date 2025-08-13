@@ -27,7 +27,7 @@ val ivysaur: Map<String, Any> = mapOf(
     "RESISTÊNCIAS" to listOf("ÁGUA", "ELÉTRICO", "GRAMA", "LUTADOR", "FADA"),
     "DESVANTAGENS" to listOf("FOGO", "PSÍQUICO", "GELO", "VOADOR"),
     "STATUS" to mapOf(
-        "VIDA" to 324.,
+        "VIDA" to 324.0,
         "ATAQUE" to 245.0,
         "DEFESA" to 247.0,
         "ATAQUE_ESPECIAL" to 284.0,
