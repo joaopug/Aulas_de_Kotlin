@@ -1,6 +1,6 @@
-package mes_8_agosto.`aula_12-20_08`.exemploAula.Entidades
+package semestre_4.mes_8_agosto.`aula_12-20_08`.exemploAula.Entidades
 
-import mes_8_agosto.`aula_12-20_08`.exemploAula.Enumeradores.Setor
+import semestre_4.mes_8_agosto.`aula_12-20_08`.exemploAula.Enumeradores.Setor
 import java.math.BigDecimal
 
 class Servico(

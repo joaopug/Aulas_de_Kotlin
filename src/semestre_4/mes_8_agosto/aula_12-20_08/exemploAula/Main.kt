@@ -1,12 +1,12 @@
-package mes_8_agosto.`aula_12-20_08`.exemploAula
+package semestre_4.mes_8_agosto.`aula_12-20_08`.exemploAula
 
-import mes_8_agosto.`aula_12-20_08`.exemploAula.Entidades.CaixaDAgua
-import mes_8_agosto.`aula_12-20_08`.exemploAula.Entidades.Funcionario
-import mes_8_agosto.`aula_12-20_08`.exemploAula.Entidades.Servico
-import mes_8_agosto.`aula_12-20_08`.exemploAula.Enumeradores.Cor
-import mes_8_agosto.`aula_12-20_08`.exemploAula.Enumeradores.Marca
-import mes_8_agosto.`aula_12-20_08`.exemploAula.Enumeradores.Setor
-import mes_8_agosto.`aula_12-20_08`.exemploAula.Enumeradores.Sexo
+import semestre_4.mes_8_agosto.`aula_12-20_08`.exemploAula.Entidades.CaixaDAgua
+import semestre_4.mes_8_agosto.`aula_12-20_08`.exemploAula.Entidades.Funcionario
+import semestre_4.mes_8_agosto.`aula_12-20_08`.exemploAula.Entidades.Servico
+import semestre_4.mes_8_agosto.`aula_12-20_08`.exemploAula.Enumeradores.Cor
+import semestre_4.mes_8_agosto.`aula_12-20_08`.exemploAula.Enumeradores.Marca
+import semestre_4.mes_8_agosto.`aula_12-20_08`.exemploAula.Enumeradores.Setor
+import semestre_4.mes_8_agosto.`aula_12-20_08`.exemploAula.Enumeradores.Sexo
 import java.math.BigDecimal
 
 fun main() {

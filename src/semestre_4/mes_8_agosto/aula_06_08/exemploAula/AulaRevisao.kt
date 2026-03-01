@@ -1,4 +1,4 @@
-package mes_8_agosto.aula_06_08.exemploAula
+package semestre_4.mes_8_agosto.aula_06_08.exemploAula
 
 fun main(){
     val nomeDoProf = "Huilson Lorenzi"

@@ -1,4 +1,4 @@
-package mes_8_agosto.`aula_12-20_08`.exemploAula
+package semestre_4.mes_8_agosto.`aula_12-20_08`.exemploAula
 
 
 /*val capacidade : Int = 20000
