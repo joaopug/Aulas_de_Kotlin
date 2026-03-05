@@ -1,0 +1,3 @@
+chcp 65001
+simulador_batalhas_pokemon.exe
+pause

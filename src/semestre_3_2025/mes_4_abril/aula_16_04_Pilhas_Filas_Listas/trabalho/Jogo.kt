@@ -20,10 +20,10 @@ fun jogo() {
     var duracaoDelay: Long = 2000
     var duracaoDelay2: Long = 6000
     var duracaoDelay3: Long = 1000
-    var nomeP1 = "Red"
-    var nomeP2 = "Blue"
-    var generoP1 = "Menino"
-    var generoP2 = "Menino"
+    var nomeP1 : String   // "Red"
+    var nomeP2 : String   // "Blue"
+    var generoP1 : String // "Menino"
+    var generoP2 : String // "Menino"
 
     println(
         "Este programa possui uma introdução" +
